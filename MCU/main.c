@@ -114,23 +114,23 @@ Checks for user input, then moves the player character accordingly.
   board: the 2D char array representing the current gameboard
   initboard: the 2D char array representing the initial gameboard, without the player
 */
-//TODO: modify to work with Nunchuk inputs
-void movePlayer(struct Player *p, char board[16][32], char initboard[16][32]) {
+//TODO: modify to work with Nunchuk
+void movePlayer(struct Player *p, char board[16][32], char initboard[16][32], int l, int d, int u, int r) {
   int x = p->x;
   int y = p->y;
-  if (!digitalRead(PA6) && x>0 && board[y][x-1]==0) {
+  if (l && x>0 && board[y][x-1]==0) {
     p->x = x - 1;
     drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PB4) && y<15 && board[y+1][x]==0) {
+  else if (d && y<15 && board[y+1][x]==0) {
     p->y = y + 1;
     drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PB1) && y>0 && board[y-1][x]==0) {
+  else if (u && y>0 && board[y-1][x]==0) {
     p->y = y - 1;
     drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PA9) && x<31 && board[y][x+1]==0) {
+  else if (r && x<31 && board[y][x+1]==0) {
     p->x = x + 1;
     drawPlayer(*p, board, initboard);
   }
@@ -213,14 +213,11 @@ int main(void) {
   //  1 = play
   //  2 = win
   //  3 = lose
-  int state = 1;
+  int state = 0;
 
   // Create game board
   char initboard[16][32];
   char board[16][32];
-  copyBoard(sans, initboard);   // copy desired board to initboard variable
-  copyBoard(initboard, board);  // copy initboard to board variable
-  drawBoard(board, empty);      // draw board
   
   // Create player object
   struct Player p = {0, 0};
@@ -229,25 +226,82 @@ int main(void) {
   // Create goal object
   struct Goal g = {31, 15};
 
+  // User input storage
+  int lft;
+  int dwn;
+  int up;
+  int rght;
+
+  int cnt;
+
   // Game Loop
   while (1) {
+    // Capture user input
+    //TODO: modify for Nunchuk
+    lft = !digitalRead(PA6);
+    dwn = !digitalRead(PB4);
+    up = !digitalRead(PB1);
+    rght = !digitalRead(PA9);
+    
     // State transition logic
+
+    //TODO: draw start screen & check for user input
     if (state == 0) {
-      //TODO: draw start screen & check for user input
+      if (cnt == 0) {
+        clearDP14211();
+        drawBoard(neutral, empty);
+        cnt++;
+      }
+      
+      if (rght) {
+        state = 1;
+        clearDP14211();
+        copyBoard(sans, initboard);   // copy desired board to initboard variable
+        copyBoard(initboard, board);  // copy initboard to board variable
+        drawBoard(board, empty);      // draw board
+        cnt = 0;
+        p.x = 0;
+        p.y = 0;
+      }
     }
+
+    //TODO: modify for Nunchuk
     if (state == 1) {
-      movePlayer(&p, board, initboard);
+      
+      movePlayer(&p, board, initboard, lft, dwn, up, rght);
 
       if ((p.x == g.x) && (p.y == g.y)) {
-      state = 2;
+        state = 2;
+        cnt = 0;
+      }
     }
-    }
+
+    //TODO: draw win screen & check for user input
     if (state == 2) {
-      drawBoard(state1, board);
-      //TODO: draw win screen & check for user input
+      if (cnt == 0) {
+        clearDP14211();
+        drawBoard(happy, empty);
+        cnt++;
+      }
+
+      if (lft) {
+        state = 0;
+        cnt = 0;
+      }
     }
+
+    //TODO: draw lose screen & check for user input
     if (state == 3) {
-      //TODO: draw lose screen & check for user input
+      if (cnt == 0) {
+        clearDP14211();
+        drawBoard(sad, empty);
+        cnt++;
+      }
+
+      if (lft) {
+        state = 0;
+        cnt = 0;
+      }
     }
   }
 }
