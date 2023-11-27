@@ -20,6 +20,9 @@ Purpose : Application start
 *   Application entry point.
 */
 
+/*
+Simple delay function
+*/
 void delay(int cycles) {
    while (cycles-- > 0) {
       volatile int x=200;
@@ -28,7 +31,23 @@ void delay(int cycles) {
    }
 }
 
-void drawState(char state[16][32], char oldstate[16][32]) {
+
+/*
+Draws a 32x16 image, represented by a 2D char array, on the DP14311 LED matrix.
+Each element in the array encodes one pixel on the matrix according to the
+following standard:
+  0b00 = off
+  0b01 = green
+  0b11 = red
+This function takes two char arrays.
+  board: the image to be drawn
+  oldboard: the image currently displayed on the matrix
+To avoid having to redraw the board completely every time, the board and oldboard 
+arrays are compared against each other to determine which pixels need to be updated.
+To completely redraw the board anyway, pass in an array of zeroes into oldboard, 
+representing a completely empty image.
+*/
+void drawBoard(char board[16][32], char oldboard[16][32]) {
   int x;
   int y;
   int n;
@@ -51,13 +70,13 @@ void drawState(char state[16][32], char oldstate[16][32]) {
       enrold = 0;
 
       for (n=0; n<4; n++) {
-        px = state[4*y+n][x];
+        px = board[4*y+n][x];
         rg = px & 0b00000010;
         en = (px & 0b00000001);
         enr |= (rg && en) << (7-n);
         eng |= (!rg && en) << (7-n);
 
-        pxold = oldstate[4*y+n][x];
+        pxold = oldboard[4*y+n][x];
         rgold = pxold & 0b00000010;
         enold = (pxold & 0b00000001);
         enrold |= (rgold && enold) << (7-n);
@@ -76,42 +95,60 @@ void drawState(char state[16][32], char oldstate[16][32]) {
   }
 }
 
-void drawPlayer(struct Player p, char state[16][32], char initstate[16][32]) {
-  drawState(initstate, state);
-  copyState(initstate, state);
-  state[p.y][p.x] = 0b11;
-  drawState(state, initstate);
+/*
+Draws the player character on the gameboard.
+  p: an instance of a Player struct
+  board: the 2D char array representing the current gameboard
+  initboard: the 2D char array representing the initial gameboard, without the player
+*/
+void drawPlayer(struct Player p, char board[16][32], char initboard[16][32]) {
+  drawBoard(initboard, board);
+  copyBoard(initboard, board);
+  board[p.y][p.x] = 0b11;
+  drawBoard(board, initboard);
 }
 
-void movePlayer(struct Player *p, char state[16][32], char initstate[16][32]) {
+/*
+Checks for user input, then moves the player character accordingly.
+  *p: a pointer to an instance of a Player struct
+  board: the 2D char array representing the current gameboard
+  initboard: the 2D char array representing the initial gameboard, without the player
+*/
+//TODO: modify to work with Nunchuk inputs
+void movePlayer(struct Player *p, char board[16][32], char initboard[16][32]) {
   int x = p->x;
   int y = p->y;
-  if (!digitalRead(PA6) && x>0 && state[y][x-1]==0) {
+  if (!digitalRead(PA6) && x>0 && board[y][x-1]==0) {
     p->x = x - 1;
-    drawPlayer(*p, state, initstate);
+    drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PB4) && y<15 && state[y+1][x]==0) {
+  else if (!digitalRead(PB4) && y<15 && board[y+1][x]==0) {
     p->y = y + 1;
-    drawPlayer(*p, state, initstate);
+    drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PB1) && y>0 && state[y-1][x]==0) {
+  else if (!digitalRead(PB1) && y>0 && board[y-1][x]==0) {
     p->y = y - 1;
-    drawPlayer(*p, state, initstate);
+    drawPlayer(*p, board, initboard);
   }
-  else if (!digitalRead(PA9) && x<31 && state[y][x+1]==0) {
+  else if (!digitalRead(PA9) && x<31 && board[y][x+1]==0) {
     p->x = x + 1;
-    drawPlayer(*p, state, initstate);
+    drawPlayer(*p, board, initboard);
   }
 }
 
-void copyState(char state[16][32], char newstate[16][32]) {
-  // Copy state
+/*
+Creates a copy of a 2D char array.
+  board: the array to be copied
+  newboard: the destination of the copy
+*/
+void copyBoard(char board[16][32], char newboard[16][32]) {
+  // Copy board
   int row;
   int col;
   
   for (row=0 ; row<16 ; row++) {
     for (col=0 ; col<32 ; col++) {
-      newstate[row][col] = state[row][col];
+      newboard[row][col] = board[row][col];
     }
   }
 }
@@ -171,22 +208,47 @@ int main(void) {
   initDP14211();
   clearDP14211();
   
-  // Create game state
-  char initstate[16][32];
-  char state[16][32];
-  char teststate[16][32];
-  copyState(sans, initstate);
-  copyState(initstate, state);
-  drawState(state, empty);
+  // Initialize game state
+  //  0 = start
+  //  1 = play
+  //  2 = win
+  //  3 = lose
+  int state = 1;
+
+  // Create game board
+  char initboard[16][32];
+  char board[16][32];
+  copyBoard(sans, initboard);   // copy desired board to initboard variable
+  copyBoard(initboard, board);  // copy initboard to board variable
+  drawBoard(board, empty);      // draw board
   
   // Create player object
-  struct Player p = {XSTART, YSTART};
-  drawPlayer(p, state, initstate);
+  struct Player p = {0, 0};
+  drawPlayer(p, board, initboard);
+
+  // Create goal object
+  struct Goal g = {31, 15};
 
   // Game Loop
   while (1) {
-    movePlayer(&p, state, initstate);
-    copyState(empty, teststate);
+    // State transition logic
+    if (state == 0) {
+      //TODO: draw start screen & check for user input
+    }
+    if (state == 1) {
+      movePlayer(&p, board, initboard);
+
+      if ((p.x == g.x) && (p.y == g.y)) {
+      state = 2;
+    }
+    }
+    if (state == 2) {
+      drawBoard(state1, board);
+      //TODO: draw win screen & check for user input
+    }
+    if (state == 3) {
+      //TODO: draw lose screen & check for user input
+    }
   }
 }
 

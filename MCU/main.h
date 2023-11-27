@@ -15,16 +15,21 @@ struct Player {
   int y;
 };
 
+struct Goal {
+  int x;
+  int y;
+};
+
 // Functions
 void delay(int cycles);
 
-void drawPlayer(struct Player p, char state[16][32], char initstate[16][32]);
+void drawPlayer(struct Player p, char board[16][32], char initboard[16][32]);
 
-void movePlayer(struct Player *p, char state[16][32], char initstate[16][32]);
+void movePlayer(struct Player *p, char board[16][32], char initboard[16][32]);
 
-void drawState(char state[16][32], char oldstate[16][32]);
+void drawBoard(char board[16][32], char oldboard[16][32]);
 
-void copyState(char state[16][32], char newstate[16][32]);
+void copyBoard(char board[16][32], char newboard[16][32]);
 
 int main(void);
 

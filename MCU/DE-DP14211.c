@@ -53,7 +53,7 @@ Refer to the communication standard for details on how x, y, g, and r are define
 as well as how the LED columns are defined.
   x: the x position of the LED column, where x is the left edge of the display
   y: the y position of the LED column, where y is the top edge of the display
-  rg: if set to 1, write message controls red LEDs
+  rg: if set to 1, write message controls red LEDs; otherwise, message controls green LEDs
   en: 4-bit number where each bit toggles one of the four LEDs in the column
 */
 void writeDP14211(uint16_t x, uint16_t y, uint16_t rg, uint16_t en) {
@@ -93,6 +93,9 @@ void clearDP14211(void) {
 // Helper Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+Waits in a loop until matrix has finished shifting in data
+*/
 void checkDone(void) {
   int done = 0;
   while (!done) {
