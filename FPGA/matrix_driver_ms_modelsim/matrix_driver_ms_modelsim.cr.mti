@@ -1,0 +1,78 @@
+C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module decoder
+
+Top level modules:
+	decoder
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay_tb.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module writedisplay_tb
+
+Top level modules:
+	writedisplay_tb
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module displaydriver_top
+-- Compiling module displaydriver
+-- Compiling module hsosc
+
+Top level modules:
+	displaydriver_top
+	hsosc
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module shftreg
+
+Top level modules:
+	shftreg
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder_tb.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module decoder_tb
+
+Top level modules:
+	decoder_tb
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module displaydriver_tb
+
+Top level modules:
+	displaydriver_tb
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module upcntr
+-- Compiling module dwncntr
+-- Compiling module ffenr
+
+Top level modules:
+	upcntr
+	dwncntr
+	ffenr
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module controller
+
+Top level modules:
+	controller
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module spireceiver
+
+Top level modules:
+	spireceiver
+
+} {} {}} C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv {1 {vlog -work work -sv -stats=none C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv
+Model Technology ModelSim - Lattice FPGA Edition vlog 2021.4 Compiler 2021.10 Oct 14 2021
+-- Compiling module writedisplay
+
+Top level modules:
+	writedisplay
+
+} {} {}}

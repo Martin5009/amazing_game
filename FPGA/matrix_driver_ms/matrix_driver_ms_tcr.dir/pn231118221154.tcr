@@ -1,0 +1,29 @@
+#Start recording tcl command: 11/18/2023 20:15:19
+#Project Location: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms; Project name: matrix_driver_ms
+prj_open "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/matrix_driver_ms.rdf"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder_tb.sv"
+prj_disable_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder_tb.sv"
+launch_programmer_prj "C:/lscc/radiant/3.2"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+#Stop recording: 11/18/2023 22:11:54

@@ -1,0 +1,4 @@
+DRC: Design Rule Check Radiant Software (64-bit) 3.2.0.18.0
+Tue Nov 14 17:10:43 2023
+
+WARNING - The clock port [sck] is assigned to a non clock dedicated pin [48], which might affect the clock performance. Use dedicated clock resources for the port.

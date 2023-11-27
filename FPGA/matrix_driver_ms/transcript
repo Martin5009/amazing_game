@@ -1,0 +1,128 @@
+# Reading pref.tcl
+# Loading project matrix_driver_ms_modelsim
+# Compile of counter.sv was successful.
+# Compile of displaydriver.sv was successful.
+# Compile of shftreg.sv was successful.
+# Compile of writedisplay.sv was successful.
+# Compile of writedisplay_tb.sv was successful.
+# Compile of controller.sv was successful.
+# Compile of displaydriver_tb.sv was successful.
+# Compile of spireceiver.sv was successful.
+# Compile of decoder.sv was successful.
+# Compile of decoder_tb.sv was successful.
+# 10 compiles, 0 failed with no errors.
+vsim -gui work.displaydriver_tb
+# vsim -gui work.displaydriver_tb 
+# Start time: 15:46:41 on Nov 20,2023
+# //  ModelSim - Lattice FPGA Edition 2021.4 Oct 14 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim - Lattice FPGA Edition and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.displaydriver_tb
+# Loading work.displaydriver
+# Loading work.spireceiver
+# Loading work.decoder
+# Loading work.writedisplay
+# Loading work.upcntr
+# Loading work.shftreg
+# Loading work.controller
+# Loading work.dwncntr
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dd'.  Expected 11, found 10.
+#    Time: 0 ns  Iteration: 0  Instance: /displaydriver_tb/dd File: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv Line: 11
+# ** Warning: (vsim-3722) C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(11): [TFMPC] - Missing connection for port 'led'.
+add wave -position end  sim:/displaydriver_tb/dd/cn/state
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: msusanto  Hostname: 5CJZ0R3  ProcessID: 5316
+#           Attempting to use alternate WLF file "./wlftyaz0cf".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftyaz0cf
+add wave -position end  sim:/displaydriver_tb/clk
+add wave -position end  sim:/displaydriver_tb/wr
+add wave -position end  sim:/displaydriver_tb/cen
+add wave -position end  sim:/displaydriver_tb/sdi
+add wave -position end  sim:/displaydriver_tb/done
+add wave -position end  sim:/displaydriver_tb/reset
+add wave -position end  sim:/displaydriver_tb/cs
+add wave -position end  sim:/displaydriver_tb/data
+add wave -position end  sim:/displaydriver_tb/csclk
+run 1000000
+# ** Note: $stop    : C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(43)
+#    Time: 20192 ns  Iteration: 0  Instance: /displaydriver_tb
+# Break in Module displaydriver_tb at C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv line 43
+add wave -position end  sim:/displaydriver_tb/dd/chpdata
+restart -f; run 1000000
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dd'.  Expected 11, found 10.
+#    Time: 0 ns  Iteration: 0  Instance: /displaydriver_tb/dd File: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv Line: 11
+# ** Warning: (vsim-3722) C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(11): [TFMPC] - Missing connection for port 'led'.
+# ** Note: $stop    : C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(43)
+#    Time: 20192 ns  Iteration: 0  Instance: /displaydriver_tb
+# Break in Module displaydriver_tb at C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv line 43
+# Compile of counter.sv was successful.
+# Compile of displaydriver.sv was successful.
+# Compile of shftreg.sv was successful.
+# Compile of writedisplay.sv was successful.
+# Compile of writedisplay_tb.sv was successful.
+# Compile of controller.sv was successful.
+# Compile of displaydriver_tb.sv was successful.
+# Compile of spireceiver.sv was successful.
+# Compile of decoder.sv was successful.
+# Compile of decoder_tb.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f; run 1000000
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.displaydriver_tb
+# Loading work.displaydriver
+# Loading work.spireceiver
+# Loading work.decoder
+# Loading work.writedisplay
+# Loading work.upcntr
+# Loading work.shftreg
+# Loading work.controller
+# Loading work.dwncntr
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dd'.  Expected 11, found 10.
+#    Time: 0 ns  Iteration: 0  Instance: /displaydriver_tb/dd File: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv Line: 11
+# ** Warning: (vsim-3722) C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(11): [TFMPC] - Missing connection for port 'led'.
+# ** Note: $stop    : C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(43)
+#    Time: 20192 ns  Iteration: 0  Instance: /displaydriver_tb
+# Break in Module displaydriver_tb at C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv line 43
+# Compile of counter.sv was successful.
+# Compile of displaydriver.sv was successful.
+# Compile of shftreg.sv was successful.
+# Compile of writedisplay.sv was successful.
+# Compile of writedisplay_tb.sv was successful.
+# Compile of controller.sv was successful.
+# Compile of displaydriver_tb.sv was successful.
+# Compile of spireceiver.sv was successful.
+# Compile of decoder.sv was successful.
+# Compile of decoder_tb.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f; run 1000000
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.displaydriver_tb
+# Loading work.displaydriver
+# Loading work.spireceiver
+# Loading work.decoder
+# Loading work.writedisplay
+# Loading work.upcntr
+# Loading work.shftreg
+# Loading work.controller
+# Loading work.dwncntr
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dd'.  Expected 11, found 10.
+#    Time: 0 ns  Iteration: 0  Instance: /displaydriver_tb/dd File: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv Line: 11
+# ** Warning: (vsim-3722) C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(11): [TFMPC] - Missing connection for port 'led'.
+# ** Note: $stop    : C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv(43)
+#    Time: 20192 ns  Iteration: 0  Instance: /displaydriver_tb
+# Break in Module displaydriver_tb at C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv line 43
+# End time: 15:59:10 on Nov 20,2023, Elapsed time: 0:12:29
+# Errors: 0, Warnings: 3

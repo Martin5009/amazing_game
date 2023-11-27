@@ -1,0 +1,6 @@
+#Start recording tcl command: 11/3/2023 20:30:32
+#Project Location: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms; Project name: matrix_driver_ms
+prj_open "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/matrix_driver_ms.rdf"
+prj_remove_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv"
+#Stop recording: 11/3/2023 21:40:06

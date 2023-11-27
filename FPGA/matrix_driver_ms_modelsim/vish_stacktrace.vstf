@@ -1,0 +1,26 @@
+# Current time Sat Nov 11 14:13:36 2023
+# ModelSim - Lattice FPGA Edition Stack Trace
+# Program = vish
+# Id = "2021.4"
+# Version = "2021.10"
+# Date = "Oct 14 2021"
+# Platform = win32loem
+
+Exception c0000005 has occurred at address 007956a9. Traceback:
+# 0    0x007956a9: 'Sqlite3_Unload + 0x76e89'
+# 1    0x0079b9c3: 'Sqlite3_Unload + 0x7d1a3'
+# 2    0x0079c4ff: 'Sqlite3_Unload + 0x7dcdf'
+# 3    0x00798ede: 'Sqlite3_Unload + 0x7a6be'
+# 4    0x007962d1: 'Sqlite3_Unload + 0x77ab1'
+# 5    0x00692c0e: 'Mtirpc_Init + 0x15c2de'
+# 6    0x004eb939: '<unknown (@0x4eb939)>'
+# 7    0x66d01fae: 'TclInvokeStringCommand + 0xbe'
+# 8    0x66d039f1: 'TclNREvalObjv + 0x3e1'
+# 9    0x66d03a49: 'TclNRRunCallbacks + 0x49'
+# 10   0x66d0563c: 'Tcl_EvalObjEx + 0x2c'
+# 11   0x704f0400: 'Itcl_EvalMemberCode + 0x300'
+# 12   0x026eccac: '<unknown (@0x26eccac)>'
+# 13   0x66d039f1: 'TclNREvalObjv + 0x3e1'
+StackWalk failed 299
+# End of Stack Trace
+

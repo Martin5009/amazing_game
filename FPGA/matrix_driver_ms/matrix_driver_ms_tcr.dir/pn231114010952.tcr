@@ -1,0 +1,67 @@
+#Start recording tcl command: 11/13/2023 23:47:20
+#Project Location: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms; Project name: matrix_driver_ms
+C:/Users/msusanto/Desktop/my_designs/matrix_driver_new
+matrix_driver_new
+#Start recording tcl command: 11/14/2023 01:09:52
+#Project Location: C:/Users/msusanto/Desktop/my_designs/matrix_driver_new; Project name: matrix_driver_new
+prj_open "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/matrix_driver_ms.rdf"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+launch_programmer_prj "C:/lscc/radiant/3.2"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run Export -impl impl_1
+prj_save 
+prj_close
+prj_create -name "matrix_driver_new" -impl "impl_1" -dev iCE40UP5K-SG48I -performance "High-Performance_1.2V" -synthesis "lse"
+file copy -force -- "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1"
+file copy -force -- "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay_tb.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/controller.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/counter.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/decoder.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/displaydriver.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/displaydriver_tb.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/shftreg.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/spireceiver.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/writedisplay.sv" "C:/Users/msusanto/Desktop/my_designs/matrix_driver_new/source/impl_1/writedisplay_tb.sv"
+prj_save 
+#Stop recording: 11/14/2023 01:09:52

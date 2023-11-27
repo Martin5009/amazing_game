@@ -1,0 +1,10 @@
+#Start recording tcl command: 11/4/2023 13:20:39
+#Project Location: C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms; Project name: matrix_driver_ms
+prj_open "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/matrix_driver_ms.rdf"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/display_decoder_tb.sv"
+prj_remove_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv"
+prj_add_source "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver_tb.sv"
+#Stop recording: 11/4/2023 18:52:03
