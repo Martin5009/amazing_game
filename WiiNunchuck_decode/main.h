@@ -1,0 +1,16 @@
+/*
+File: main.h
+Authors: Lawrence Nelson and Cecilia Li
+Email: llnelson@g.hmc.edu, celi@g.hmc.edu
+
+Header file for main.c
+*/
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Function prototypes
+///////////////////////////////////////////////////////////////////////////////
+void updateMap(char* wiidata, char*);
+
+void sendMap(char*);
