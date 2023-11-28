@@ -317,22 +317,11 @@ int main(void) {
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
-<<<<<<< HEAD
         drawBoard(start_ani3, empty);
-=======
-        drawBoard(start_ani1, empty);
->>>>>>> af7c8f750f081d9570833f99ca66bd202edcc69d
         cnt++;
         frame = 0;
         startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
-
-      drawBoard(start_ani2, start_ani1);
-      delay(200);
-      drawBoard(start_ani3, start_ani2);
-      delay(200);
-      drawBoard(start_ani1, start_ani3);
-      delay(200);
       
       // Loop animation
       if (checkCount(TIM15)) {
@@ -341,7 +330,8 @@ int main(void) {
         else frame++;
         startCount(TIM15, STARTMSPERFRAME);
       }
-
+      
+      // Start game when user input detected
       if (rght) {
         state = 1;
         
@@ -352,18 +342,18 @@ int main(void) {
         // Initialize timer
         tim = TIMVAL;
 
-        // Draw maze
+        // Start countdown
         clearDP14211();
-
-        // Draw the counter
         drawBoard(start_count3, empty);
         delay(1000);
         drawBoard(start_count2, start_count3);
         delay(1000);
         drawBoard(start_count1, start_count2);
-      
-        clearDP14211();
+        delay(1000);
 
+        clearDP14211();
+        
+        // Draw maze
         copyBoard(testmaze, initboard);   // copy desired board to initboard variable
         copyBoard(initboard, board);  // copy initboard to board variable
         copyBoard(board, timboard);
@@ -375,7 +365,6 @@ int main(void) {
     
     //TODO: modify for Nunchuk
     if (state == 1) {
-
       if (cnt == 0) {
         startCount(TIM15, TIMVAL);
         cnt++;
@@ -384,12 +373,14 @@ int main(void) {
       
       tickTimer(timboard, initboard, TIM15->CNT, TIMVAL);
       movePlayer(&p, board, timboard, lft, dwn, up, rght);
-
-      cnt++;
+      
+      // Check win condition
       if (checkGoal(p, g, 2)) {
         state = 2;
         cnt = 0;
       }
+      
+      // Check if time left
       if (checkCount(TIM15)) {
         state = 3;
         cnt = 0;
