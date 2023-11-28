@@ -129,7 +129,6 @@ class Canvas:
             self.window.close()
         else:
             self.window['-DONE-'].update(text='Exit')
-    
 
 def build_matrix(rows, cols):
     return [[Led(0b00) for col in range(cols)] for row in range(rows)]

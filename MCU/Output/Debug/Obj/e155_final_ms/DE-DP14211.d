@@ -1,24 +1,24 @@
 Output/Debug/Obj/e155_final_ms/DE-DP14211.o: \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/DE-DP14211.c \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/DE-DP14211.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/stdio.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/__SEGGER_RTL.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/__SEGGER_RTL_ConfDefaults.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/__SEGGER_RTL_Conf.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/__SEGGER_RTL_Arm_Conf.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/stdlib.h \
-  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/stdint.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L4xx/Device/Include/stm32l432xx.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/CMSIS_5/CMSIS/Core/Include/core_cm4.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/CMSIS_5/CMSIS/Core/Include/cmsis_version.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/CMSIS_5/CMSIS/Core/Include/cmsis_compiler.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/CMSIS_5/CMSIS/Core/Include/cmsis_gcc.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/CMSIS_5/CMSIS/Core/Include/mpu_armv7.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L4xx/Device/Include/system_stm32l4xx.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_GPIO.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_RCC.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_TIM.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_FLASH.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_USART.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_SPI.h
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\DE-DP14211.c \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\DE-DP14211.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\stdio.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\__SEGGER_RTL.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\__SEGGER_RTL_ConfDefaults.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\__SEGGER_RTL_Conf.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\__SEGGER_RTL_Arm_Conf.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\stdlib.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32\include\stdint.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L4xx\Device\Include\stm32l432xx.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\CMSIS_5\CMSIS\Core\Include\core_cm4.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\CMSIS_5\CMSIS\Core\Include\cmsis_version.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\CMSIS_5\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\CMSIS_5\CMSIS\Core\Include\cmsis_gcc.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\CMSIS_5\CMSIS\Core\Include\mpu_armv7.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L4xx\Device\Include\system_stm32l4xx.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_GPIO.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_RCC.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_TIM.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_FLASH.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_USART.h \
+  C:\Users\licec\OneDrive\Documents\GitHub\amazing_game\MCU\STM32L432KC_SPI.h
