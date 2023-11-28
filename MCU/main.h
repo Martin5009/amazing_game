@@ -6,7 +6,7 @@
 
 #define XSTART 0
 #define YSTART 1
-#define TIMVAL 5000
+#define TIMVAL 2000
 #define STARTMSPERFRAME 40
 
 char initstate[16][32];

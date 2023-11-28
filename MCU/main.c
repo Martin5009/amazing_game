@@ -256,16 +256,16 @@ int main(void) {
 
   // Configure user input device pins
   
-  togglePin(PA6); //left
+  togglePin(PA6); //down
   pinMode(PA6, GPIO_INPUT);
 
-  togglePin(PB4); //down
+  togglePin(PB4); //right
   pinMode(PB4, GPIO_INPUT);
 
-  togglePin(PB1); //up
+  togglePin(PB1); //left
   pinMode(PB1, GPIO_INPUT);
 
-  togglePin(PA9); //right
+  togglePin(PA9); //down
   pinMode(PA9, GPIO_INPUT);
   
   // Initialize matrix
@@ -306,10 +306,10 @@ int main(void) {
   while (1) {
     // Capture user input
     //TODO: modify for Nunchuk
-    lft = !digitalRead(PA6);
-    dwn = !digitalRead(PB4);
-    up = !digitalRead(PB1);
-    rght = !digitalRead(PA9);
+    lft = !digitalRead(PB4);
+    dwn = !digitalRead(PA9);
+    up = !digitalRead(PA6);
+    rght = !digitalRead(PB1);
     
     // State transition logic
 
@@ -332,7 +332,7 @@ int main(void) {
       }
       
       // Start game when user input detected
-      if (rght) {
+      if (dwn) {
         state = 1;
         
         // Place player at start
@@ -396,7 +396,7 @@ int main(void) {
         frame = 0;
       }
 
-      if (lft) {
+      if (up) {
         state = 0;
         cnt = 0;
       }
@@ -411,7 +411,7 @@ int main(void) {
         frame = 0;
       }
 
-      if (lft) {
+      if (up) {
         state = 0;
         cnt = 0;
       }

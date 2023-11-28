@@ -82,9 +82,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="330" useTextEdit="1" folds0="49,103,117,170,188" path="main.c" left="0" selected="1" top="218" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="9" useTextEdit="1" path="main.h" left="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="22" useTextEdit="1" path="DE-DP14211.c" left="0" top="22" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="387" useTextEdit="1" folds0="49,103,117,170,188" path="main.c" left="0" top="273" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="8" useTextEdit="1" path="main.h" left="0" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="22" useTextEdit="1" path="DE-DP14211.c" left="0" top="47" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="52" y="24" useTextEdit="1" path="STM32L432KC_TIM.c" left="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="6" y="18" useTextEdit="1" path="STM32L432KC_TIM.h" left="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="12" y="977" useTextEdit="1" openedFrom="/Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_TIM.c" path="STM32L4xx/Device/Include/stm32l432xx.h" left="0" top="977" codecName="Default"/>
