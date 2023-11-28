@@ -296,9 +296,16 @@ int main(void) {
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
-        drawBoard(neutral, empty);
+        drawBoard(start_ani1, empty);
         cnt++;
       }
+
+      drawBoard(start_ani2, start_ani1);
+      delay(200);
+      drawBoard(start_ani3, start_ani2);
+      delay(200);
+      drawBoard(start_ani1, start_ani3);
+      delay(200);
       
       if (rght) {
         state = 1;
@@ -312,6 +319,16 @@ int main(void) {
 
         // Draw maze
         clearDP14211();
+
+        // Draw the counter
+        drawBoard(start_count3, empty);
+        delay(1000);
+        drawBoard(start_count2, start_count3);
+        delay(1000);
+        drawBoard(start_count1, start_count2);
+      
+        clearDP14211();
+
         copyBoard(testmaze, initboard);   // copy desired board to initboard variable
         copyBoard(initboard, board);  // copy initboard to board variable
         copyBoard(board, timboard);
