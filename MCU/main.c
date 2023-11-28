@@ -137,6 +137,35 @@ void movePlayer(struct Player *p, char board[16][32], char initboard[16][32], in
 }
 
 /*
+
+*/
+int tickTimer(char board[16][32], char initboard[16][32], int tim, int timval) {
+  int n;
+  float test;
+  int newtim;
+  int col;
+  int row;
+  char oldboard[16][32];
+  
+  copyBoard(board, oldboard);
+
+  newtim = tim - 1;
+  n = floor((double)tim/(double)timval * 32);
+  
+  for (col=0 ; col<32 ; col++) {
+    board[0][col] = 0b1;
+  }
+
+  for (col=0 ; col<n ; col++) {
+    board[0][col] = 0b11;
+  }
+  
+  drawBoard(board, oldboard);
+
+  return newtim;
+}
+
+/*
 Creates a copy of a 2D char array.
   board: the array to be copied
   newboard: the destination of the copy
@@ -145,12 +174,27 @@ void copyBoard(char board[16][32], char newboard[16][32]) {
   // Copy board
   int row;
   int col;
-  
+
   for (row=0 ; row<16 ; row++) {
     for (col=0 ; col<32 ; col++) {
       newboard[row][col] = board[row][col];
     }
   }
+}
+
+/*
+Returns True if player is at any of the goal points.
+  p: instance of a Player struct
+  g: array of up to four Goal instances
+  n: the first n Goal instances in the array will be checked 
+*/
+int checkGoal(struct Player p, struct Goal g[4], int n) {
+  int cnt = 0;
+  int i;
+  for (i=0 ; i<n ; i++) {
+    cnt = cnt + (p.x == g[i].x && p.y == g[i].y);
+  }
+  return cnt;
 }
 
 int main(void) {
@@ -204,7 +248,7 @@ int main(void) {
   togglePin(PA9); //right
   pinMode(PA9, GPIO_INPUT);
   
-  // Initialize matrix and draw maze
+  // Initialize matrix
   initDP14211();
   clearDP14211();
   
@@ -217,14 +261,16 @@ int main(void) {
 
   // Create game board
   char initboard[16][32];
+  char timboard[16][32];
   char board[16][32];
   
   // Create player object
-  struct Player p = {0, 0};
-  drawPlayer(p, board, initboard);
+  struct Player p;
 
-  // Create goal object
-  struct Goal g = {31, 15};
+  // Create goal objects
+  struct Goal g1 = {31, 14};
+  struct Goal g2 = {31, 13};
+  struct Goal g[2] = {g1, g2};
 
   // User input storage
   int lft;
@@ -232,7 +278,8 @@ int main(void) {
   int up;
   int rght;
 
-  int cnt;
+  int cnt = 0;
+  int tim;
 
   // Game Loop
   while (1) {
@@ -245,7 +292,7 @@ int main(void) {
     
     // State transition logic
 
-    //TODO: draw start screen & check for user input
+    //TODO: draw start screen & modify for Nunchuk
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
@@ -255,28 +302,46 @@ int main(void) {
       
       if (rght) {
         state = 1;
+        
+        // Place player at start
+        p.x = XSTART;
+        p.y = YSTART;
+
+        // Initialize timer
+        tim = TIMVAL;
+
+        // Draw maze
         clearDP14211();
-        copyBoard(sans, initboard);   // copy desired board to initboard variable
+        copyBoard(testmaze, initboard);   // copy desired board to initboard variable
         copyBoard(initboard, board);  // copy initboard to board variable
+        copyBoard(board, timboard);
         drawBoard(board, empty);      // draw board
         cnt = 0;
-        p.x = 0;
-        p.y = 0;
+
       }
     }
-
+    
     //TODO: modify for Nunchuk
     if (state == 1) {
-      
-      movePlayer(&p, board, initboard, lft, dwn, up, rght);
 
-      if ((p.x == g.x) && (p.y == g.y)) {
+      if (cnt == 1000) {
+        tim = tickTimer(timboard, initboard, tim, TIMVAL);
+        cnt = 0;
+      }
+      movePlayer(&p, board, timboard, lft, dwn, up, rght);
+      
+      cnt++;
+      if (checkGoal(p, g, 2)) {
         state = 2;
         cnt = 0;
       }
+      if (tim == 0) {
+        state = 3;
+        cnt = 0;
+      }
     }
 
-    //TODO: draw win screen & check for user input
+    //TODO: draw win screen & modify for Nunchuk
     if (state == 2) {
       if (cnt == 0) {
         clearDP14211();
@@ -290,7 +355,7 @@ int main(void) {
       }
     }
 
-    //TODO: draw lose screen & check for user input
+    //TODO: draw lose screen & modify for Nunchuk
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();

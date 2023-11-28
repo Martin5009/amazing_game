@@ -22,4 +22,6 @@ Output/Debug/Obj/e155_final_ms/main.o: \
   /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_FLASH.h \
   /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_USART.h \
   /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/STM32L432KC_SPI.h \
-  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/DE-DP14211.h
+  /Users/martin5009/Desktop/HMC/E155/e155_final_project/MCU/DE-DP14211.h \
+  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/math.h \
+  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 7.32/include/__SEGGER_RTL_FP.h
