@@ -137,9 +137,9 @@ void movePlayer(struct Player *p, char board[16][32], char initboard[16][32], in
 }
 
 /*
-
+Updates the timer bar in the board.
 */
-int tickTimer(char board[16][32], char initboard[16][32], int tim, int timval) {
+void tickTimer(char board[16][32], char initboard[16][32], int tim, int timval) {
   int n;
   float test;
   int newtim;
@@ -148,21 +148,19 @@ int tickTimer(char board[16][32], char initboard[16][32], int tim, int timval) {
   char oldboard[16][32];
   
   copyBoard(board, oldboard);
-
-  newtim = tim - 1;
   n = floor((double)tim/(double)timval * 32);
   
   for (col=0 ; col<32 ; col++) {
     board[0][col] = 0b1;
+    board[15][col] = 0b1;
   }
 
   for (col=0 ; col<n ; col++) {
     board[0][col] = 0b11;
+    board[15][col] = 0b11;
   }
   
   drawBoard(board, oldboard);
-
-  return newtim;
 }
 
 /*
@@ -197,6 +195,24 @@ int checkGoal(struct Player p, struct Goal g[4], int n) {
   return cnt;
 }
 
+/*
+
+*/
+void startCount(TIM_TypeDef * TIMx, uint32_t ms){
+  TIMx->ARR = ms;// Set timer max count
+  TIMx->EGR |= 1;     // Force update
+  TIMx->SR &= ~(0x1); // Clear UIF
+  TIMx->CNT = 0;      // Reset count
+}
+
+int checkCount(TIM_TypeDef * TIMx){
+  return (TIMx->SR & 1); // Wait for UIF to go high
+}
+
+void drawFrame(char (*boards[8])[16][32], char (*initboards[8])[16][32], int frame) {
+  drawBoard(boards[frame], initboards[frame]);
+}
+
 int main(void) {
   configureFlash();
   configureClock();
@@ -206,6 +222,10 @@ int main(void) {
   
   togglePin(PA12); // PA12 as DONE
   pinMode(PA12, GPIO_INPUT);
+  
+  // Configure TIM15
+  RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
+  initTIM(TIM15);
 
   // Enable clock output on MCO pin
   RCC->CFGR = _VAL2FLD(RCC_CFGR_MCOSEL, 0b0001);
@@ -280,7 +300,8 @@ int main(void) {
 
   int cnt = 0;
   int tim;
-
+  int frame;
+  
   // Game Loop
   while (1) {
     // Capture user input
@@ -296,10 +317,20 @@ int main(void) {
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
-        drawBoard(neutral, empty);
+        drawBoard(start_ani3, empty);
         cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
       
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(start_ani, start_ani_init, frame);
+        if (frame >= 2) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME);
+      }
+
       if (rght) {
         state = 1;
         
@@ -324,18 +355,21 @@ int main(void) {
     //TODO: modify for Nunchuk
     if (state == 1) {
 
-      if (cnt == 1000) {
-        tim = tickTimer(timboard, initboard, tim, TIMVAL);
-        cnt = 0;
+      if (cnt == 0) {
+        startCount(TIM15, TIMVAL);
+        cnt++;
+        frame = 0;
       }
-      movePlayer(&p, board, timboard, lft, dwn, up, rght);
       
+      tickTimer(timboard, initboard, TIM15->CNT, TIMVAL);
+      movePlayer(&p, board, timboard, lft, dwn, up, rght);
+
       cnt++;
       if (checkGoal(p, g, 2)) {
         state = 2;
         cnt = 0;
       }
-      if (tim == 0) {
+      if (checkCount(TIM15)) {
         state = 3;
         cnt = 0;
       }
@@ -347,6 +381,7 @@ int main(void) {
         clearDP14211();
         drawBoard(happy, empty);
         cnt++;
+        frame = 0;
       }
 
       if (lft) {
@@ -361,6 +396,7 @@ int main(void) {
         clearDP14211();
         drawBoard(sad, empty);
         cnt++;
+        frame = 0;
       }
 
       if (lft) {
