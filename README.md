@@ -1,2 +1,2 @@
 # amazing_game
-ahhhhhhhhhhhhhhhhhhhhhh
+ahhhhhhhhhhhhhhhhhhhhhh *hits the griddy*
