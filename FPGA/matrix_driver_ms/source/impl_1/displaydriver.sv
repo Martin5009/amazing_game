@@ -11,8 +11,18 @@ module displaydriver_top (input	logic clk,
 						output logic cs,
 						output [3:0] led);
 	
+	logic [4:0] counter;
+	logic divclk;
 	
-	displaydriver dd(clk, reset, sck, sdi, cen, done, csclk, data, wr, cs, led);
+	// Counter
+	always_ff @(posedge clk) begin
+		if (~reset) counter <= 0;
+		else	   counter <= counter + 2'b1;
+	end
+
+	assign divclk = counter[4];
+	
+	displaydriver dd(divclk, reset, sck, sdi, cen, done, csclk, data, wr, cs, led);
 	
 endmodule
 					 

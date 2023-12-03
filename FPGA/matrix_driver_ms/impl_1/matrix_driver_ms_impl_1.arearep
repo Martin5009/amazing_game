@@ -1,16 +1,36 @@
 ----------------------------------------------------------------------
-Report for cell displaydriver.TECH
-Register bits:  73 of 5280 (1.383%)
+Report for cell displaydriver_top.TECH
+Register bits:  78 of 5280 (1.477%)
 I/O cells:      14
                                   Cell usage:
                                cell     count   Res Usage(%)
                                CCU2        18          100.0
-                            FD1P3XZ        73          100.0
+                            FD1P3XZ        78          100.0
                                  IB         5          100.0
                                 INV         1          100.0
                               IOL_B         1          100.0
-                               LUT4       134          100.0
+                               LUT4       141          100.0
                                  OB         9          100.0
+SUB MODULES
+                         controller         1
+                            decoder         1
+                      displaydriver         1
+                            dwncntr         1
+                            shftreg         1
+                        spireceiver         1
+                             upcntr         1
+                        upcntr(N=2)         1
+                       writedisplay         1
+                              TOTAL       262
+----------------------------------------------------------------------
+Report for cell displaydriver.v1
+Instance Path : dd
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2        18          100.0
+                            FD1P3XZ        73           93.6
+                              IOL_B         1          100.0
+                               LUT4       131           92.9
 SUB MODULES
                          controller         1
                             decoder         1
@@ -20,73 +40,73 @@ SUB MODULES
                              upcntr         1
                         upcntr(N=2)         1
                        writedisplay         1
-                              TOTAL       249
-----------------------------------------------------------------------
-Report for cell upcntr.v1
-Instance Path : ucnt
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ         9           12.3
-                               LUT4         8            6.0
-                              TOTAL        17
-----------------------------------------------------------------------
-Report for cell spireceiver.v1
-Instance Path : spi
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ        15           20.5
-                              IOL_B         1          100.0
-                               LUT4         5            3.7
-                              TOTAL        21
-----------------------------------------------------------------------
-Report for cell controller.v1
-Instance Path : cn
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ        12           16.4
-                               LUT4        36           26.9
-                              TOTAL        48
-----------------------------------------------------------------------
-Report for cell decoder.v1
-Instance Path : dc
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                                FA2        12           66.7
-                               LUT4        42           31.3
-                              TOTAL        54
-----------------------------------------------------------------------
-Report for cell dwncntr.v1
-Instance Path : dcnt
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                                FA2         6           33.3
-                            FD1P3XZ        11           15.1
-                               LUT4         7            5.2
-                              TOTAL        24
+                              TOTAL       231
 ----------------------------------------------------------------------
 Report for cell writedisplay.v1
-Instance Path : wd
+Instance Path : dd.wd
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ        25           34.2
-                               LUT4        32           23.9
+                            FD1P3XZ        25           32.1
+                               LUT4        33           23.4
 SUB MODULES
                             shftreg         1
                         upcntr(N=2)         1
-                              TOTAL        59
+                              TOTAL        60
 ----------------------------------------------------------------------
 Report for cell upcntr(N=2).v1
-Instance Path : wd.wrcnt
+Instance Path : dd.wd.wrcnt
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ         2            2.7
-                               LUT4         2            1.5
+                            FD1P3XZ         2            2.6
+                               LUT4         2            1.4
                               TOTAL         4
 ----------------------------------------------------------------------
 Report for cell shftreg.v1
-Instance Path : wd.sr
+Instance Path : dd.wd.sr
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ        19           26.0
-                               LUT4        24           17.9
-                              TOTAL        43
+                            FD1P3XZ        19           24.4
+                               LUT4        25           17.7
+                              TOTAL        44
+----------------------------------------------------------------------
+Report for cell upcntr.v1
+Instance Path : dd.ucnt
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         9           11.5
+                               LUT4         8            5.7
+                              TOTAL        17
+----------------------------------------------------------------------
+Report for cell spireceiver.v1
+Instance Path : dd.spi
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ        15           19.2
+                              IOL_B         1          100.0
+                               LUT4         6            4.3
+                              TOTAL        22
+----------------------------------------------------------------------
+Report for cell dwncntr.v1
+Instance Path : dd.dcnt
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         6           33.3
+                            FD1P3XZ        11           14.1
+                               LUT4         7            5.0
+                              TOTAL        24
+----------------------------------------------------------------------
+Report for cell decoder.v1
+Instance Path : dd.dc
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2        12           66.7
+                               LUT4        41           29.1
+                              TOTAL        53
+----------------------------------------------------------------------
+Report for cell controller.v1
+Instance Path : dd.cn
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ        12           15.4
+                               LUT4        36           25.5
+                              TOTAL        48

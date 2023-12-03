@@ -1,0 +1,20 @@
+<top name = "displaydriver_top"  library = "work"  arch = ""  entry = "Verilog">
+
+<clocks>
+    <clockitem name = "clk"  type = "port" />
+    <clockitem name = "counter[4]"  type = "net" />
+    <clockitem name = "sck"  type = "port" />
+    <clockitem name = "dd/dclk"  type = "net" />
+</clocks>
+
+<!--
+    //=============================================================
+    //  Number of Clocks processed: 4
+    //
+    //  If a clock cannot be found in the top level pins section,
+    //  that means it is an internal clock.
+    //
+    //=============================================================
+-->
+
+</top>

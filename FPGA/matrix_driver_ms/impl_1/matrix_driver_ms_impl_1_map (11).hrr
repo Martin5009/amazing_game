@@ -1,0 +1,91 @@
+---------------------------------------------------
+Report for cell displaydriver_top
+   Instance path: displaydriver_top
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	        204        100.0
+                                 IOREG	          1        100.0
+                                 IOBUF	         14        100.0
+                                PFUREG	         78        100.0
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                         displaydriver	          1        77.9
+---------------------------------------------------
+Report for cell displaydriver
+   Instance path: displaydriver_top/dd
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	        159        77.9
+                                 IOREG	          1        100.0
+                                PFUREG	         73        93.6
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                            controller	          1        17.6
+                               decoder	          1        28.9
+                               dwncntr	          1         9.3
+                           spireceiver	          1         2.9
+                                upcntr	          1         3.9
+                          writedisplay	          1        15.2
+---------------------------------------------------
+Report for cell writedisplay
+   Instance path: displaydriver_top/dd/wd
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         31        15.2
+                                PFUREG	         25        32.1
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                               shftreg	          1        11.8
+                           upcntr(N=2)	          1         1.0
+---------------------------------------------------
+Report for cell upcntr(N=2)
+   Instance path: displaydriver_top/dd/wd/wrcnt
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          2         1.0
+                                PFUREG	          2         2.6
+---------------------------------------------------
+Report for cell shftreg
+   Instance path: displaydriver_top/dd/wd/sr
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         24        11.8
+                                PFUREG	         19        24.4
+---------------------------------------------------
+Report for cell upcntr
+   Instance path: displaydriver_top/dd/ucnt
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          8         3.9
+                                PFUREG	          9        11.5
+---------------------------------------------------
+Report for cell spireceiver
+   Instance path: displaydriver_top/dd/spi
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	          6         2.9
+                                 IOREG	          1        100.0
+                                PFUREG	         15        19.2
+---------------------------------------------------
+Report for cell dwncntr
+   Instance path: displaydriver_top/dd/dcnt
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         19         9.3
+                                PFUREG	         11        14.1
+---------------------------------------------------
+Report for cell decoder
+   Instance path: displaydriver_top/dd/dc
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         59        28.9
+---------------------------------------------------
+Report for cell controller
+   Instance path: displaydriver_top/dd/cn
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         36        17.6
+                                PFUREG	         12        15.4
