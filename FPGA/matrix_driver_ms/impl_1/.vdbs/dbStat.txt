@@ -1,1 +1,1 @@
-displaydriver_rtl.vdb
+displaydriver_top_rtl.vdb

@@ -104,7 +104,7 @@ Draws the player character on the gameboard.
 void drawPlayer(struct Player p, char board[16][32], char initboard[16][32]) {
   drawBoard(initboard, board);
   copyBoard(initboard, board);
-  board[p.y][p.x] = 0b11;
+  board[(int) p.y][(int) p.x] = 0b11;
   drawBoard(board, initboard);
 }
 
@@ -114,26 +114,34 @@ Checks for user input, then moves the player character accordingly.
   board: the 2D char array representing the current gameboard
   initboard: the 2D char array representing the initial gameboard, without the player
 */
-//TODO: modify to work with Nunchuk
-void movePlayer(struct Player *p, char board[16][32], char initboard[16][32], int l, int d, int u, int r) {
-  int x = p->x;
-  int y = p->y;
-  if (l && x>0 && board[y][x-1]==0) {
-    p->x = x - 1;
+
+int movePlayer(struct Player *p, char board[16][32], char initboard[16][32], char x_in, char y_in) {
+  float x = p->x;
+  float y = p->y;
+  int x_in_int = (int) x_in;
+  int y_in_int = (int) y_in;
+
+  if (y_in_int < 10 && x>0 && board[(int) y][(int) x-1]==0) {
+    p->x = x - SPD;
     drawPlayer(*p, board, initboard);
+    return 1;
   }
-  else if (d && y<15 && board[y+1][x]==0) {
-    p->y = y + 1;
+  else if (x_in_int > 245 && y<15 && board[(int) y+1][(int) x]==0) {
+    p->y = y + SPD;
     drawPlayer(*p, board, initboard);
+    return 1;
   }
-  else if (u && y>0 && board[y-1][x]==0) {
-    p->y = y - 1;
+  else if (x_in_int < 10 && y>0 && board[(int) y-1][(int) x]==0) {
+    p->y = y - SPD;
     drawPlayer(*p, board, initboard);
+    return 1;
   }
-  else if (r && x<31 && board[y][x+1]==0) {
-    p->x = x + 1;
+  else if (y_in_int > 245 && x<31 && board[(int) y][(int) x+1]==0) {
+    p->x = x + SPD;
     drawPlayer(*p, board, initboard);
+    return 1;
   }
+  else return 0;
 }
 
 /*
@@ -190,27 +198,33 @@ int checkGoal(struct Player p, struct Goal g[4], int n) {
   int cnt = 0;
   int i;
   for (i=0 ; i<n ; i++) {
-    cnt = cnt + (p.x == g[i].x && p.y == g[i].y);
+    cnt = cnt + ((int) p.x == g[i].x && (int) p.y == g[i].y);
   }
   return cnt;
 }
 
-/*
-
-*/
-void startCount(TIM_TypeDef * TIMx, uint32_t ms){
-  TIMx->ARR = ms;// Set timer max count
-  TIMx->EGR |= 1;     // Force update
-  TIMx->SR &= ~(0x1); // Clear UIF
-  TIMx->CNT = 0;      // Reset count
-}
-
-int checkCount(TIM_TypeDef * TIMx){
-  return (TIMx->SR & 1); // Wait for UIF to go high
-}
 
 void drawFrame(char (*boards[8])[16][32], char (*initboards[8])[16][32], int frame) {
   drawBoard(boards[frame], initboards[frame]);
+}
+
+void playNote(int notes[][2], int n) {
+  setFreq(TIM16, notes[n][0]);
+}
+
+void playSong(int notes[][2]) {
+  int i = 0;
+  while (1) {
+  if (notes[i][1] == 0) {
+    break;
+  }
+  else {
+    setFreq(TIM16, notes[i][0]);
+    delay_millis(TIM1, notes[i][1]);
+  }
+  i++;
+  }
+  setFreq(TIM16, 0);
 }
 
 int main(void) {
@@ -223,24 +237,32 @@ int main(void) {
   togglePin(PA12); // PA12 as DONE
   pinMode(PA12, GPIO_INPUT);
   
-  // Configure TIM15
+  // Configure Timers
+  togglePin(6); // Toggle pin PA6
+  GPIOA->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL6, 14); // Choose PA6 as CH1 of TIM16
+  pinMode(6, GPIO_ALT); // Enable PA6
+  RCC->CFGR |= _VAL2FLD(RCC_CFGR_PPRE2, 0b000);
   RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
-  initTIM(TIM15);
+  RCC->APB2ENR |= RCC_APB2ENR_TIM16EN;
+  RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+  initTIM(TIM15); // Initialize game timer
+  initTIM(TIM16); // Initialize frequency timer
+  initTIM(TIM1);  // Initialize delay timer
 
   // Enable clock output on MCO pin
-  RCC->CFGR = _VAL2FLD(RCC_CFGR_MCOSEL, 0b0001);
+  RCC->CFGR |= _VAL2FLD(RCC_CFGR_MCOSEL, 0b0001);
   togglePin(PA8);
   GPIOA->AFR[1] |= _VAL2FLD(GPIO_AFRH_AFSEL8, 0b0000);
   pinMode(PA8, GPIO_ALT);
   
-   // Enable SPI1 peripheral
+  // Enable SPI1 peripheral
   RCC->APB2ENR |= (RCC_APB2ENR_SPI1EN);
   initSPI(0b011, 0, 0);
   
   // Configure SPI1 SDO, SDI, CE, and SCK pins
-  togglePin(PA5); // PA5 as SCK
-  GPIOA->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL5, 0b0101);
-  pinMode(PA5, GPIO_ALT);
+  togglePin(PB3); // PA5 as SCK
+  GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL5, 0b0101);
+  pinMode(PB3, GPIO_ALT);
 
   togglePin(PB5); // PB5 as SDO
   GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL5, 0b0101);
@@ -253,20 +275,6 @@ int main(void) {
   togglePin(PB0); // PB0 as CE
   pinMode(PB0, GPIO_OUTPUT);
   digitalWrite(PB0, 0);
-
-  // Configure user input device pins
-  
-  togglePin(PA6); //down
-  pinMode(PA6, GPIO_INPUT);
-
-  togglePin(PB4); //right
-  pinMode(PB4, GPIO_INPUT);
-
-  togglePin(PB1); //left
-  pinMode(PB1, GPIO_INPUT);
-
-  togglePin(PA9); //down
-  pinMode(PA9, GPIO_INPUT);
   
   // Initialize matrix
   initDP14211();
@@ -277,6 +285,7 @@ int main(void) {
   //  1 = play
   //  2 = win
   //  3 = lose
+  //  4 = record
   int state = 0;
 
   // Create game board
@@ -301,23 +310,39 @@ int main(void) {
   int cnt = 0;
   int tim;
   int frame;
+  int note;
+  int i;
+  int z;
+  int c;
+  int best = 0;
+  int score;
   
+  // Initialize I2C; run 5 times if it randomly crashes
+  char *wiidata;
+  char *wiiint;
+
+  initI2C();
+  initNunchukFirst();
+  initNunchukSecond();
+  initNunchukThird();
+  wiiint = readData();
+  
+  //playSong(notes0);
+
   // Game Loop
   while (1) {
     // Capture user input
-    //TODO: modify for Nunchuk
-    lft = !digitalRead(PB4);
-    dwn = !digitalRead(PA9);
-    up = !digitalRead(PA6);
-    rght = !digitalRead(PB1);
+    initNunchukPrim();
+    wiidata = readData();
+    z = wiidata[5] & 1;
+    c = (wiidata[5] >> 1) & 1;
     
     // State transition logic
 
-    //TODO: draw start screen & modify for Nunchuk
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
-        drawBoard(start_ani3, empty);
+        drawBoard(start_ani1, empty);
         cnt++;
         frame = 0;
         startCount(TIM15, STARTMSPERFRAME); // Start animation timer
@@ -332,9 +357,10 @@ int main(void) {
       }
       
       // Start game when user input detected
-      if (dwn) {
+
+      if (!z) {
         state = 1;
-        
+
         // Place player at start
         p.x = XSTART;
         p.y = YSTART;
@@ -345,11 +371,14 @@ int main(void) {
         // Start countdown
         clearDP14211();
         drawBoard(start_count3, empty);
-        delay(1000);
+        playSong(countsound);
+        delay(4000);
         drawBoard(start_count2, start_count3);
-        delay(1000);
+        playSong(countsound);
+        delay(4000);
         drawBoard(start_count1, start_count2);
-        delay(1000);
+        playSong(countsound);
+        delay(4000);
 
         clearDP14211();
         
@@ -360,60 +389,108 @@ int main(void) {
         drawBoard(board, empty);      // draw board
         cnt = 0;
 
+        playSong(gosound);
+
       }
     }
     
-    //TODO: modify for Nunchuk
     if (state == 1) {
       if (cnt == 0) {
         startCount(TIM15, TIMVAL);
         cnt++;
         frame = 0;
+        note = 0;
+        //startCount(TIM1, 10); // Start song timer
       }
       
-      tickTimer(timboard, initboard, TIM15->CNT, TIMVAL);
-      movePlayer(&p, board, timboard, lft, dwn, up, rght);
+      tickTimer(timboard, initboard, TIM15->CNT, TIM15->ARR);
       
+      // Loop song
+      if (movePlayer(&p, board, timboard, wiidata[0], wiidata[1])) {
+        playNote(moveloop, note);
+        //startCount(TIM1, notes0[note][1]);
+        if (note >= 3) note = 0;
+        else note++;
+      }
+      else TIM16->CR1 &= 0;
+
       // Check win condition
       if (checkGoal(p, g, 2)) {
-        state = 2;
         cnt = 0;
+        TIM16->CR1 &= 0;
+        score = (int) TIM15->ARR - (int) TIM15->CNT;
+        if (score > best) {
+          state = 4;
+          best = score;
+        }
+        else state = 2;
       }
       
       // Check if time left
       if (checkCount(TIM15)) {
         state = 3;
         cnt = 0;
+        TIM16->CR1 &= 0;
       }
     }
 
-    //TODO: draw win screen & modify for Nunchuk
+    //TODO: draw win screen
     if (state == 2) {
       if (cnt == 0) {
         clearDP14211();
         drawBoard(happy, empty);
         cnt++;
         frame = 0;
+        playSong(winsound);
       }
 
-      if (up) {
+      if (!c) {
         state = 0;
         cnt = 0;
+        playSong(userin);
       }
     }
 
-    //TODO: draw lose screen & modify for Nunchuk
+    //TODO: draw lose screen
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();
         drawBoard(sad, empty);
         cnt++;
         frame = 0;
+        playSong(losesound);
       }
 
-      if (up) {
+      if (!c) {
         state = 0;
         cnt = 0;
+        playSong(userin);
+      }
+    }
+
+    //TODO: draw record screen
+    if (state == 4) {
+      if (cnt == 0) {
+        clearDP14211();
+        drawBoard(record_ani1, empty);
+        cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME*7); // Start animation timer
+        playSong(recordsound);
+      }
+
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(record_ani, record_ani_init, frame);
+        if (frame >= 1) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME*7);
+      }
+
+      if (!c) {
+        state = 0;
+        cnt = 0;
+        playSong(userin);
       }
     }
   }
