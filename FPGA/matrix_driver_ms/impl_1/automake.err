@@ -4,3 +4,4 @@ ERROR - c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/deco
 ERROR - c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv(26): assign statement not supported for synthesis. VERI-1001
 ERROR - c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv(26): assign statement not supported for synthesis. VERI-1001
 ERROR - c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv(51): S9 is not declared. VERI-1128
+ERROR - c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv(17): osc is not declared. VERI-1128

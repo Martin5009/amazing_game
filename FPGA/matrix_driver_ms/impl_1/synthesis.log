@@ -5,10 +5,10 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2022 Lattice Semiconductor Corporation,  All rights reserved.
-Mon Nov 20 15:53:10 2023
+Thu Nov 30 15:28:42 2023
 
 
-Command Line:  C:\lscc\radiant\3.2\ispfpga\bin\nt64\synthesis.exe -f matrix_driver_ms_impl_1_lattice.synproj -gui -msgset C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/promote.xml 
+Command Line:  C:\lscc\radiant\3.2\ispfpga\bin\nt64\synthesis.exe -f matrix_driver_ms_impl_1_lattice.synproj -gui -msgset C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/promote.xml 
 
 Synthesis options:
 The -a option is iCE40UP.
@@ -38,7 +38,7 @@ The -p option is iCE40UP5K.
 
 INFO - synthesis: User-Selected Strategy Settings
 Optimization goal = Area
-Top-level module name = displaydriver.
+Top-level module name = displaydriver_top.
 Target frequency = 200.000000 MHz.
 Maximum fanout = 1000.
 Timing path count = 3
@@ -67,27 +67,27 @@ ROM style = auto
 RAM style = auto
 The -comp option is FALSE.
 The -syn option is FALSE.
--path C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms (searchpath added)
--path C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/impl_1 (searchpath added)
+-path C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms (searchpath added)
+-path C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/impl_1 (searchpath added)
 -path C:/lscc/radiant/3.2/ispfpga/ice40tp/data (searchpath added)
 Mixed language design
 Verilog design file = C:/lscc/radiant/3.2/ip/pmi/pmi_iCE40UP.v
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv
-Verilog design file = C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/writedisplay.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/counter.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/shftreg.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/spireceiver.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/controller.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/decoder.sv
+Verilog design file = C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/source/impl_1/displaydriver.sv
 VHDL library = pmi
 VHDL design file = C:/lscc/radiant/3.2/ip/pmi/pmi_iCE40UP.vhd
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv.
-WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/writedisplay.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/counter.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/shftreg.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/spireceiver.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/controller.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/decoder.sv.
+WARNING - synthesis: Unexpected file name extension for Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv.
 The -r option is OFF. [ Remove LOC Properties is OFF. ]
 Compile design.
 Compile Design Begin
@@ -125,31 +125,32 @@ INFO - synthesis: c:/lscc/radiant/3.2/ip/pmi/pmi_ram_dp_be.v(49): analyzing incl
 INFO - synthesis: c:/lscc/radiant/3.2/ip/pmi/pmi_ice40up.v(16): analyzing included file c:/lscc/radiant/3.2/ip/pmi/pmi_ram_dq_be.v. VERI-1328
 INFO - synthesis: c:/lscc/radiant/3.2/ip/pmi/pmi_ram_dq_be.v(45): analyzing included file c:/lscc/radiant/3.2/ip/pmi/../avant/ram_dq/rtl/lscc_ram_dq.v. VERI-1328
 INFO - synthesis: c:/lscc/radiant/3.2/ip/pmi/pmi_ice40up.v(17): analyzing included file c:/lscc/radiant/3.2/ip/pmi/pmi_dsp.v. VERI-1328
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv. VERI-1482
-Analyzing Verilog file c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/writedisplay.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/counter.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/shftreg.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/spireceiver.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/controller.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/decoder.sv. VERI-1482
+Analyzing Verilog file c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv. VERI-1482
 Analyzing VHDL file c:/lscc/radiant/3.2/ip/pmi/pmi_ice40up.vhd. VHDL-1481
 Analyzing VHDL file c:/lscc/radiant/3.2/ip/pmi/pmi_ice40up.vhd
 
 INFO - synthesis: c:/lscc/radiant/3.2/ip/pmi/pmi_ice40up.vhd(4): analyzing package components. VHDL-1014
-INFO - synthesis: The default VHDL library search path is now "C:/Users/msusanto/Desktop/my_designs/matrix_driver_ms/impl_1". VHDL-1504
+INFO - synthesis: The default VHDL library search path is now "C:/Users/msusanto/Desktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/impl_1". VHDL-1504
 Top module language type = Verilog.
-Top module name (Verilog, mixed language): displaydriver
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv(20): compiling module displaydriver. VERI-1018
-WARNING - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/displaydriver.sv(44): expression size 2 truncated to fit in target size 1. VERI-1209
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/spireceiver.sv(1): compiling module spireceiver. VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/decoder.sv(1): compiling module decoder. VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/writedisplay.sv(1): compiling module writedisplay. VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv(1): compiling module upcntr(N=2). VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/shftreg.sv(3): compiling module shftreg. VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv(1): compiling module controller. VERI-1018
-WARNING - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/controller.sv(57): expression size 5 truncated to fit in target size 4. VERI-1209
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv(14): compiling module dwncntr. VERI-1018
-INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/impl_1/counter.sv(1): compiling module upcntr. VERI-1018
+Top module name (Verilog, mixed language): displaydriver_top
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv(2): compiling module displaydriver_top. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv(30): compiling module displaydriver. VERI-1018
+WARNING - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/displaydriver.sv(54): expression size 2 truncated to fit in target size 1. VERI-1209
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/spireceiver.sv(1): compiling module spireceiver. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/decoder.sv(1): compiling module decoder. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/writedisplay.sv(1): compiling module writedisplay. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/counter.sv(1): compiling module upcntr(N=2). VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/shftreg.sv(3): compiling module shftreg. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/controller.sv(1): compiling module controller. VERI-1018
+WARNING - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/controller.sv(57): expression size 5 truncated to fit in target size 4. VERI-1209
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/counter.sv(14): compiling module dwncntr. VERI-1018
+INFO - synthesis: c:/users/msusanto/desktop/matrix_driver_ms-20231130t225944z-001/matrix_driver_ms/source/impl_1/counter.sv(1): compiling module upcntr. VERI-1018
                                                          
 
 
@@ -174,7 +175,7 @@ INFO - synthesis: c:/users/msusanto/desktop/my_designs/matrix_driver_ms/source/i
                                                          
 
 
-INFO - synthesis: Extracted state machine for register '\ucnt/cnt' with one-hot encoding
+INFO - synthesis: Extracted state machine for register '\dd/ucnt/cnt' with one-hot encoding
 State machine has 8 reachable states with original encodings of:
 
  000 
@@ -211,8 +212,8 @@ original encoding -> new encoding (one-hot encoding)
 
  111 -> 10000000
 
-INFO - synthesis: Safe logic for state machine with register '\ucnt/cnt' will be inferred
-INFO - synthesis: Extracted state machine for register '\wd/state' with one-hot encoding
+INFO - synthesis: Safe logic for state machine with register '\dd/ucnt/cnt' will be inferred
+INFO - synthesis: Extracted state machine for register '\dd/wd/state' with one-hot encoding
 State machine has 3 reachable states with original encodings of:
 
  000 
@@ -229,8 +230,8 @@ original encoding -> new encoding (one-hot encoding)
 
  010 -> 100
 
-INFO - synthesis: Safe logic for state machine with register '\wd/state' will be inferred
-INFO - synthesis: Extracted state machine for register '\cn/state' with one-hot encoding
+INFO - synthesis: Safe logic for state machine with register '\dd/wd/state' will be inferred
+INFO - synthesis: Extracted state machine for register '\dd/cn/state' with one-hot encoding
 State machine has 11 reachable states with original encodings of:
 
  00000 
@@ -279,8 +280,8 @@ original encoding -> new encoding (one-hot encoding)
 
  01010 -> 10000000000
 
-INFO - synthesis: Safe logic for state machine with register '\cn/state' will be inferred
-INFO - synthesis: Extracted state machine for register '\wd/sr/state' with one-hot encoding
+INFO - synthesis: Safe logic for state machine with register '\dd/cn/state' will be inferred
+INFO - synthesis: Extracted state machine for register '\dd/wd/sr/state' with one-hot encoding
 State machine has 3 reachable states with original encodings of:
 
  000 
@@ -297,20 +298,20 @@ original encoding -> new encoding (one-hot encoding)
 
  010 -> 100
 
-INFO - synthesis: Safe logic for state machine with register '\wd/sr/state' will be inferred
+INFO - synthesis: Safe logic for state machine with register '\dd/wd/sr/state' will be inferred
 
 
 
 INFO - synthesis: Special Primitives IFD1P3AZ and OFD1P3AZ for ThunderPlus are synthesized using IOL_B.
 
-################### Begin Area Report (displaydriver)######################
-Number of register bits => 73 of 5280 (1 % )
+################### Begin Area Report (displaydriver_top)######################
+Number of register bits => 78 of 5280 (1 % )
 CCU2 => 18
-FD1P3XZ => 73
+FD1P3XZ => 78
 IB => 5
 INV => 1
 IOL_B => 1
-LUT4 => 134
+LUT4 => 141
 OB => 9
 ################### End Area Report ##################
 Number of odd-length carry chains : 1
@@ -318,29 +319,30 @@ Number of even-length carry chains : 3
 
 ################### Begin Clock Report ######################
 Clock Nets
-Number of Clocks: 3
-  Net : dclk, loads : 1
-  Net : sck_c, loads : 0
+Number of Clocks: 4
   Net : clk_c, loads : 0
+  Net : dd/dclk, loads : 1
+  Net : counter[4], loads : 1
+  Net : sck_c, loads : 0
 Clock Enable Nets
 Number of Clock Enables: 0
 Highest fanout non-clock nets
 Top 10 highest fanout non-clock nets:
   Net : cen_c, loads : 20
-  Net : spi/msg[6], loads : 16
-  Net : cn/init, loads : 16
-  Net : spi/msg[4], loads : 15
-  Net : d1_13__N_220, loads : 15
-  Net : spi/msg[15], loads : 14
-  Net : wd/sr/n892, loads : 14
-  Net : dc/chp3_13__N_118, loads : 12
-  Net : cn/nextstate_4__N_258, loads : 11
-  Net : cn/state_FSM_illegal, loads : 11
+  Net : dd/cn/init, loads : 16
+  Net : dd/spi/msg[6], loads : 16
+  Net : d1_13__N_232, loads : 15
+  Net : dd/spi/msg[15], loads : 14
+  Net : dd/wd/sr/n883, loads : 14
+  Net : dd/spi/msg[4], loads : 12
+  Net : dd/dc/chp3_13__N_130, loads : 12
+  Net : dd/cn/state_FSM_illegal, loads : 11
+  Net : dd/cn/nextstate_4__N_270, loads : 11
 ################### End Clock Report ##################
 
-Peak Memory Usage: 87 MB
+Peak Memory Usage: 89 MB
 
 --------------------------------------------------------------
 Total CPU Time: 1 secs 
-Total REAL Time: 6 secs 
+Total REAL Time: 5 secs 
 --------------------------------------------------------------

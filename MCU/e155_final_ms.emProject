@@ -71,6 +71,8 @@
       <file file_name="STM32L432KC_FLASH.h" />
       <file file_name="STM32L432KC_GPIO.c" />
       <file file_name="STM32L432KC_GPIO.h" />
+      <file file_name="STM32L432KC_I2C.c" />
+      <file file_name="STM32L432KC_I2C.h" />
       <file file_name="STM32L432KC_RCC.c" />
       <file file_name="STM32L432KC_RCC.h" />
       <file file_name="STM32L432KC_SPI.c" />

@@ -10,13 +10,7 @@ Initializes the matrix by enabling the system clock.
 Run this at least once before calling any other function.
 */
 void initDP14211(void) {
-  
-  // Define pin which takes the "done" signal from the FPGA, 
-  // signalling whether the FPGA is ready to receive more SPI data.
-  gpioEnable(GPIO_PORT_A);
-  togglePin(PA12); // PA12 as DONE
-  pinMode(PA12, GPIO_INPUT);
-  
+   
   // Disable system 
   digitalWrite(PB0, 1); //Pull CE high
   uint16_t cfig = 0b1000000000000000;

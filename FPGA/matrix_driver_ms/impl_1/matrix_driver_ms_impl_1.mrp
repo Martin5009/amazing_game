@@ -5,23 +5,23 @@ Target Device:        iCE40UP5KSG48
 Target Performance:   High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 3.2.0.18.0
-Mapped on: Mon Nov 20 15:53:16 2023
+Mapped on: Thu Nov 30 15:28:47 2023
 
 Design Information
 ------------------
 
 Command line:   map -i matrix_driver_ms_impl_1_syn.udb -pdc C:/Users/msusanto/De
-     sktop/my_designs/matrix_driver_ms/matrix_driver_pins.pdc -o
-     matrix_driver_ms_impl_1_map.udb -mp matrix_driver_ms_impl_1.mrp -hierrpt
-     -gui
+     sktop/matrix_driver_ms-20231130T225944Z-001/matrix_driver_ms/matrix_driver_
+     pins.pdc -o matrix_driver_ms_impl_1_map.udb -mp matrix_driver_ms_impl_1.mrp
+     -hierrpt -gui
 
 Design Summary
 --------------
 
-   Number of slice registers:  73 out of  5280 (1%)
+   Number of slice registers:  78 out of  5280 (1%)
    Number of I/O registers:      1 out of   117 (1%)
-   Number of LUT4s:           197 out of  5280 (4%)
-      Number of logic LUT4s:             133
+   Number of LUT4s:           204 out of  5280 (4%)
+      Number of logic LUT4s:             140
       Number of inserted feedthru LUT4s:  28
       Number of ripple logic:             18 (36 LUT4s)
    Number of IO sites used:   14 out of 39 (36%)
@@ -45,21 +45,21 @@ Design Summary
    Number of SPIs:             0 out of 2 (0%)
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
-   Number of Clocks:  3
-      Net dclk: 54 loads, 39 rising, 15 falling (Driver: Pin counter/Q)
+   Number of Clocks:  4
+      Net clk_c: 5 loads, 5 rising, 0 falling (Driver: Port clk)
+      Net counter[4]: 1 loads, 1 rising, 0 falling (Driver: Pin
+     counter_320__i5/Q)
+      Net dclk: 54 loads, 39 rising, 15 falling (Driver: Pin dd.counter/Q)
       Net sck_c: 16 loads, 16 rising, 0 falling (Driver: Port sck)
-      Net clk_c: 1 loads, 1 rising, 0 falling (Driver: Port clk)
    Number of Clock Enables:  5
-      Net ucnt.n929: 8 loads, 8 SLICEs
-      Net init: 1 loads, 1 SLICEs
+      Net dd.n526: 1 loads, 1 SLICEs
+      Net dd.init: 1 loads, 1 SLICEs
+      Net dd.wd.sr.n883: 14 loads, 14 SLICEs
+      Net dd.ucnt.n920: 8 loads, 8 SLICEs
       Pin cen: 16 loads, 15 SLICEs (Net: cen_c)
-      Net n576: 1 loads, 1 SLICEs
-      Net wd.sr.n892: 14 loads, 14 SLICEs
-   Number of LSRs:  8
-      Net cnt_FSM_illegal: 8 loads, 8 SLICEs
-      Net init: 2 loads, 2 SLICEs
-      Net wrreset: 2 loads, 2 SLICEs
-      Net shftset: 6 loads, 6 SLICEs
+   Number of LSRs:  9
+      Net reset_N_12: 5 loads, 5 SLICEs
+      Net dd.wd.state_FSM_illegal: 3 loads, 3 SLICEs
 
                                     Page 1
 
@@ -69,21 +69,24 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net cn.state_FSM_illegal: 11 loads, 11 SLICEs
-      Net wd.state_FSM_illegal: 3 loads, 3 SLICEs
-      Net wd.sr.n917: 1 loads, 1 SLICEs
-      Net wd.sr.state_FSM_illegal: 3 loads, 3 SLICEs
+      Net dd.wrreset: 2 loads, 2 SLICEs
+      Net dd.init: 2 loads, 2 SLICEs
+      Net dd.wd.sr.n908: 1 loads, 1 SLICEs
+      Net dd.wd.sr.state_FSM_illegal: 3 loads, 3 SLICEs
+      Net dd.cnt_FSM_illegal: 8 loads, 8 SLICEs
+      Net dd.shftset: 6 loads, 6 SLICEs
+      Net dd.cn.state_FSM_illegal: 11 loads, 11 SLICEs
    Top 10 highest fanout non-clock nets:
       Net cen_c: 20 loads
-      Net msg[6]: 18 loads
-      Net init: 17 loads
-      Net msg[4]: 17 loads
-      Net msg[15]: 15 loads
-      Net chpdata_13__N_185: 14 loads
-      Net wd.sr.n892: 14 loads
-      Net chpdata_13__N_184: 12 loads
-      Net dc.chp3_13__N_118: 12 loads
-      Net cn.nextstate_4__N_258: 11 loads
+      Net dd.msg[6]: 18 loads
+      Net dd.init: 17 loads
+      Net dd.msg[4]: 17 loads
+      Net dd.msg[15]: 15 loads
+      Net dd.chpdata_13__N_197: 14 loads
+      Net dd.wd.sr.n883: 14 loads
+      Net dd.chpdata_13__N_196: 12 loads
+      Net dd.dc.chp3_13__N_130: 12 loads
+      Net VCC_net: 11 loads
 
 
 
@@ -111,9 +114,9 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| done                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 | csclk               | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| done                | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | data                | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -123,9 +126,6 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | led[3]              | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| led[2]              | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| led[1]              | OUTPUT    |           |       |       |           |
 
                                     Page 2
 
@@ -135,6 +135,9 @@ IO (PIO) Attributes
 
 IO (PIO) Attributes (cont)
 --------------------------
+| led[2]              | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| led[1]              | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | led[0]              | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -152,13 +155,13 @@ IO (PIO) Attributes (cont)
 Removed logic
 -------------
 
-Block i373_1_lut was optimized away.
+Block i16_1_lut was optimized away.
 Block i1 was optimized away.
 
 ASIC Components
 ---------------
 
-Instance Name: spi/msg_i0_i0
+Instance Name: dd/spi/msg_i0_i0
          Type: IOLOGIC
 
 Run Time and Memory Usage
@@ -166,10 +169,7 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 58 MB
-
-
-
+   Peak Memory Usage: 60 MB
 
 
 

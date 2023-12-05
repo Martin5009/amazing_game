@@ -3,6 +3,7 @@
 "Output/Debug/Obj/e155_final_ms/main.o"
 "Output/Debug/Obj/e155_final_ms/STM32L432KC_FLASH.o"
 "Output/Debug/Obj/e155_final_ms/STM32L432KC_GPIO.o"
+"Output/Debug/Obj/e155_final_ms/STM32L432KC_I2C.o"
 "Output/Debug/Obj/e155_final_ms/STM32L432KC_RCC.o"
 "Output/Debug/Obj/e155_final_ms/STM32L432KC_SPI.o"
 "Output/Debug/Obj/e155_final_ms/STM32L432KC_TIM.o"
