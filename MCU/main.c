@@ -440,21 +440,17 @@ int main(void) {
         clearDP14211();
         drawBoard(win1, empty);
         cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
 
-      drawBoard(win2, win1);
-      delay(100);
-      drawBoard(win3, win2);
-      delay(100);
-      drawBoard(win4, win3);
-      delay(100);
-      drawBoard(win5, win4);
-      delay(100);
-      drawBoard(win6, win5);
-      delay(100);
-      drawBoard(win1, win6);
-      delay(100);
-
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(win_ani, win_ani_init, frame);
+        if (frame >= 5) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME);
+      }
 
       if (!c) {
         state = 0;
@@ -462,31 +458,24 @@ int main(void) {
         playSong(userin);
       }
     }
-
+    
     // draw lose screen
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();
         drawBoard(lose1, empty);
         cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
-  
-      drawBoard(lose2, lose1);
-      delay(100);
-      drawBoard(lose3, lose2);
-      delay(100);
-      drawBoard(lose4, lose3);
-      delay(100);
-      drawBoard(lose5, lose4);
-      delay(100);
-      drawBoard(lose6, lose5);
-      delay(100);
-      drawBoard(lose7, lose6);
-      delay(100);
-      drawBoard(lose8, lose7);
-      delay(100);
-      drawBoard(lose1, lose8);
-      delay(100);
+
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(lose_ani, lose_ani_init, frame);
+        if (frame >= 7) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME);
+      }
 
       if (!c) {
         state = 0;

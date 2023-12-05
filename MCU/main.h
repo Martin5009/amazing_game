@@ -231,6 +231,12 @@ char (*start_ani_init[3])[16][32] = {&start_ani1, &start_ani2, &start_ani3};
 char (*record_ani[2])[16][32] = {&record_ani2, &record_ani1};
 char (*record_ani_init[2])[16][32] = {&record_ani1, &record_ani2};
 
+char (*win_ani[6])[16][32] = {&win2, &win3, &win4, &win5, &win6, &win1};
+char (*win_ani_init[6])[16][32] = {&win1, &win2, &win3, &win4, &win5, &win6};
+
+char (*lose_ani[8])[16][32] = {&lose2, &lose3, &lose4, &lose5, &lose6, &lose7, &lose8, &lose1};
+char (*lose_ani_init[8])[16][32] = {&lose1, &lose2, &lose3, &lose4, &lose5, &lose6, &lose7, &lose8};
+
 // Sounds
 
 const int moveloop[][2] = {
