@@ -434,15 +434,27 @@ int main(void) {
       }
     }
 
-    //TODO: draw win screen
+    // draw win screen
     if (state == 2) {
       if (cnt == 0) {
         clearDP14211();
-        drawBoard(happy, empty);
+        drawBoard(win1, empty);
         cnt++;
-        frame = 0;
-        playSong(winsound);
       }
+
+      drawBoard(win2, win1);
+      delay(100);
+      drawBoard(win3, win2);
+      delay(100);
+      drawBoard(win4, win3);
+      delay(100);
+      drawBoard(win5, win4);
+      delay(100);
+      drawBoard(win6, win5);
+      delay(100);
+      drawBoard(win1, win6);
+      delay(100);
+
 
       if (!c) {
         state = 0;
@@ -451,15 +463,30 @@ int main(void) {
       }
     }
 
-    //TODO: draw lose screen
+    // draw lose screen
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();
-        drawBoard(sad, empty);
+        drawBoard(lose1, empty);
         cnt++;
-        frame = 0;
-        playSong(losesound);
       }
+  
+      drawBoard(lose2, lose1);
+      delay(100);
+      drawBoard(lose3, lose2);
+      delay(100);
+      drawBoard(lose4, lose3);
+      delay(100);
+      drawBoard(lose5, lose4);
+      delay(100);
+      drawBoard(lose6, lose5);
+      delay(100);
+      drawBoard(lose7, lose6);
+      delay(100);
+      drawBoard(lose8, lose7);
+      delay(100);
+      drawBoard(lose1, lose8);
+      delay(100);
 
       if (!c) {
         state = 0;
