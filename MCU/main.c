@@ -376,7 +376,7 @@ int main(void) {
       delay(100);
       drawBoard(win6, win5);
       delay(100);
-      drawBoard(win6, win1);
+      drawBoard(win1, win6);
       delay(100);
 
 
