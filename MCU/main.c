@@ -68,13 +68,19 @@ void drawBoard(char board[16][32], char oldboard[16][32]) {
       enr = 0;
       engold = 0;
       enrold = 0;
+      
+      // Each register in the LED matrix represents a column of 4 pixels.
+      // Thus, the smallest unit by which we can update the matrix is a column of 4 pixels.
 
+      // Iterate over each pixel in a column of 4.
       for (n=0; n<4; n++) {
-        px = board[4*y+n][x];
-        rg = px & 0b00000010;
-        en = (px & 0b00000001);
-        enr |= (rg && en) << (7-n);
-        eng |= (!rg && en) << (7-n);
+
+        // Translate board pixel value into a command to enable the red/green LEDs on the matrix
+        px = board[4*y+n][x];         // Grab pixel
+        rg = px & 0b00000010;         // Isolate color bit
+        en = (px & 0b00000001);       // Isolate enable bit
+        enr |= (rg && en) << (7-n);   // Generate enable message for green LEDs
+        eng |= (!rg && en) << (7-n);  // Generate enable message for red LEDs
 
         pxold = oldboard[4*y+n][x];
         rgold = pxold & 0b00000010;
@@ -86,7 +92,8 @@ void drawBoard(char board[16][32], char oldboard[16][32]) {
       eng = eng >> 4;
       enrold = enrold >> 4;
       engold = engold >> 4;
-
+      
+      // Only write to the matrix if 4-pixel-column has changed
       if ((enr != enrold) || (eng != engold)) {
         writeDP14211(x, y, 0, eng);
         writeDP14211(x, y, 1, enr);
