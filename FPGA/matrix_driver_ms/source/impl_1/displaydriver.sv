@@ -1,4 +1,8 @@
 `default_nettype wire
+/*
+displaydriver_top
+	Top level module with display driver and clock divider.
+*/
 module displaydriver_top (input	logic clk,
 						input	logic reset,
 						input	logic sck,
@@ -27,7 +31,10 @@ module displaydriver_top (input	logic clk,
 	
 endmodule
 					 
-
+/*
+displaydriver
+	Top level module for display driver. Included SPI interface.
+*/
 module displaydriver (input	logic clk,
 					 input	logic reset,
 					 input	logic sck,
@@ -67,6 +74,11 @@ module displaydriver (input	logic clk,
 	
 endmodule
 
+/*
+hsosc
+	Module for the built-in hi-speed oscillator on the FPGA.
+ 	Unused, as MCU sends clock to FPGA.
+*/
 module hsosc (input		logic reset,
 			  output	logic clk);
 	
