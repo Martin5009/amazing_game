@@ -1,3 +1,7 @@
+/*
+controller
+	Moore FSM controller for DE-DP14112 LED matrix decoder.
+*/
 module controller (input	logic clk,
 				  input		logic reset,
 				  input		logic cen,
