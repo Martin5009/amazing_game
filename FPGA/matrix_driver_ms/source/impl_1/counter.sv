@@ -1,3 +1,7 @@
+/*
+upcntr
+	Standard enable and resettable up-counter.
+*/
 module upcntr #(parameter N=3)
 			  (input	logic clk,
 			   input	logic en,
@@ -11,6 +15,10 @@ module upcntr #(parameter N=3)
 	
 endmodule
 
+/*
+dwncntr
+	Settable down-counter.
+*/
 module dwncntr #(parameter N=11)
 			  (input	logic clk,
 			   input	logic en,
@@ -25,6 +33,10 @@ module dwncntr #(parameter N=11)
 	
 endmodule
 
+/*
+ffenr
+	Flip-flop with reset and enable.
+*/
 module ffenr #(parameter N=1)
 			  (input	logic clk,
 			   input	logic en,
