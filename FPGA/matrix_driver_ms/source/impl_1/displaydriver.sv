@@ -14,7 +14,8 @@ module displaydriver_top (input	logic clk,
 	logic [4:0] counter;
 	logic divclk;
 	
-	// Counter
+	// Incoming MCU clock is 16 MHz. Display runs at 256 kHz.
+	// Clock must be divided to avoid sending data to display faster than it can write.
 	always_ff @(posedge clk) begin
 		if (~reset) counter <= 0;
 		else	   counter <= counter + 2'b1;
