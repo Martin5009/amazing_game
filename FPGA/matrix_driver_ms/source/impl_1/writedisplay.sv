@@ -1,3 +1,9 @@
+/*
+writedisplay
+	Writes data to the DE-DP14112 LED matrix using the protocol described in the DE-DP14112 datasheet.
+ 	The DE-DP14112 uses a non-standard serial interface, so this module serves to translate SPI
+  	commands from the MCU into a message that complies with this non-standard protocol.
+*/
 module writedisplay (input	logic clk,
 					input	logic reset,
 					input	logic wrreset,
