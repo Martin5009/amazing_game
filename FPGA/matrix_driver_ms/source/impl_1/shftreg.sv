@@ -1,5 +1,9 @@
 `default_nettype wire
 
+/*
+shftreg
+	When init is asserted, stores d then shifts it out on the clk when en is asserted.
+*/
 module shftreg #(parameter N=14)
 			  (input	logic clk,
 			   input	logic reset,
