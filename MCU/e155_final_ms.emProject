@@ -66,6 +66,7 @@
       <file file_name="DE-DP14211.h" />
       <file file_name="main.c" />
       <file file_name="main.h" />
+      <file file_name="media.h" />
       <file file_name="STM32L432KC.h" />
       <file file_name="STM32L432KC_FLASH.c" />
       <file file_name="STM32L432KC_FLASH.h" />

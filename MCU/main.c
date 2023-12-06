@@ -203,15 +203,34 @@ int checkGoal(struct Player p, struct Goal g[4], int n) {
   return cnt;
 }
 
-
+/*
+Draws a single frame in an array of frames.
+  boards: an array of 16x32 2D arrays, where each 16x32 array represents a boardstate
+  initboards: an array of 16x32 2D arrays, where each 16x32 array represents the initial boardstate at that frame
+  frame: desired index of boards to be drawn
+*/
 void drawFrame(char (*boards[8])[16][32], char (*initboards[8])[16][32], int frame) {
   drawBoard(boards[frame], initboards[frame]);
 }
 
+
+/*
+Plays note n in an array of notes by generating a square wave using TIM16.
+Using this function in place of playSong allows you to avoid including a nested While
+loop inside the main game loop, which is useful if you want to check for user input while 
+playing a sound simultaneously.
+  notes: Nx2 2D array of ints, where each pair of ints represents the frequency (hz) and duration (ms) of the note.
+  n: index of notes
+*/
 void playNote(int notes[][2], int n) {
   setFreq(TIM16, notes[n][0]);
 }
 
+
+/*
+Plays a song defined by a 2D array of notes using While-loop-based delays.
+  notes: Nx2 2D array of ints, where each pair of ints represents the frequency (hz) and duration (ms) of the note.
+*/
 void playSong(int notes[][2]) {
   int i = 0;
   while (1) {
@@ -326,8 +345,6 @@ int main(void) {
   initNunchukSecond();
   initNunchukThird();
   wiiint = readData();
-  
-  //playSong(notes0);
 
   // Game Loop
   while (1) {
@@ -337,8 +354,7 @@ int main(void) {
     z = wiidata[5] & 1;
     c = (wiidata[5] >> 1) & 1;
     
-    // State transition logic
-
+    // Start Screen
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
@@ -357,7 +373,6 @@ int main(void) {
       }
       
       // Start game when user input detected
-
       if (!z) {
         state = 1;
 
@@ -394,6 +409,7 @@ int main(void) {
       }
     }
     
+    // Playing
     if (state == 1) {
       if (cnt == 0) {
         startCount(TIM15, TIMVAL);
@@ -434,7 +450,7 @@ int main(void) {
       }
     }
 
-    // draw win screen
+    // Win Screen
     if (state == 2) {
       if (cnt == 0) {
         clearDP14211();
@@ -459,7 +475,7 @@ int main(void) {
       }
     }
     
-    // draw lose screen
+    // Lose Screen
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();
@@ -483,8 +499,8 @@ int main(void) {
         playSong(userin);
       }
     }
-
-    //TODO: draw record screen
+    
+    // New Record Screen
     if (state == 4) {
       if (cnt == 0) {
         clearDP14211();
