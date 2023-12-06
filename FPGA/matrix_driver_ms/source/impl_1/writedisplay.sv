@@ -36,7 +36,6 @@ module writedisplay (input	logic clk,
 	
 	upcntr #(.N(2)) wrcnt(clk, ~cs, wrreset, cnt);
 	
-	//ffenr  #(.N(1)) ff(clk, cnt[0], reset, cnt[1], wr);
 	assign wr = ~cnt[1];
 	
 	shftreg #(.N(14)) sr(clk, reset, cnt[1], init, chpdata, sdo);
