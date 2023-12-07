@@ -68,13 +68,19 @@ void drawBoard(char board[16][32], char oldboard[16][32]) {
       enr = 0;
       engold = 0;
       enrold = 0;
+      
+      // Each register in the LED matrix represents a column of 4 pixels.
+      // Thus, the smallest unit by which we can update the matrix is a column of 4 pixels.
 
+      // Iterate over each pixel in a column of 4.
       for (n=0; n<4; n++) {
-        px = board[4*y+n][x];
-        rg = px & 0b00000010;
-        en = (px & 0b00000001);
-        enr |= (rg && en) << (7-n);
-        eng |= (!rg && en) << (7-n);
+
+        // Translate board pixel value into a command to enable the red/green LEDs on the matrix
+        px = board[4*y+n][x];         // Grab pixel
+        rg = px & 0b00000010;         // Isolate color bit
+        en = (px & 0b00000001);       // Isolate enable bit
+        enr |= (rg && en) << (7-n);   // Generate enable message for green LEDs
+        eng |= (!rg && en) << (7-n);  // Generate enable message for red LEDs
 
         pxold = oldboard[4*y+n][x];
         rgold = pxold & 0b00000010;
@@ -86,7 +92,8 @@ void drawBoard(char board[16][32], char oldboard[16][32]) {
       eng = eng >> 4;
       enrold = enrold >> 4;
       engold = engold >> 4;
-
+      
+      // Only write to the matrix if 4-pixel-column has changed
       if ((enr != enrold) || (eng != engold)) {
         writeDP14211(x, y, 0, eng);
         writeDP14211(x, y, 1, enr);
@@ -203,15 +210,34 @@ int checkGoal(struct Player p, struct Goal g[4], int n) {
   return cnt;
 }
 
-
+/*
+Draws a single frame in an array of frames.
+  boards: an array of 16x32 2D arrays, where each 16x32 array represents a boardstate
+  initboards: an array of 16x32 2D arrays, where each 16x32 array represents the initial boardstate at that frame
+  frame: desired index of boards to be drawn
+*/
 void drawFrame(char (*boards[8])[16][32], char (*initboards[8])[16][32], int frame) {
   drawBoard(boards[frame], initboards[frame]);
 }
 
+
+/*
+Plays note n in an array of notes by generating a square wave using TIM16.
+Using this function in place of playSong allows you to avoid including a nested While
+loop inside the main game loop, which is useful if you want to check for user input while 
+playing a sound simultaneously.
+  notes: Nx2 2D array of ints, where each pair of ints represents the frequency (hz) and duration (ms) of the note.
+  n: index of notes
+*/
 void playNote(int notes[][2], int n) {
   setFreq(TIM16, notes[n][0]);
 }
 
+
+/*
+Plays a song defined by a 2D array of notes using While-loop-based delays.
+  notes: Nx2 2D array of ints, where each pair of ints represents the frequency (hz) and duration (ms) of the note.
+*/
 void playSong(int notes[][2]) {
   int i = 0;
   while (1) {
@@ -326,8 +352,6 @@ int main(void) {
   initNunchukSecond();
   initNunchukThird();
   wiiint = readData();
-  
-  //playSong(notes0);
 
   // Game Loop
   while (1) {
@@ -337,8 +361,7 @@ int main(void) {
     z = wiidata[5] & 1;
     c = (wiidata[5] >> 1) & 1;
     
-    // State transition logic
-
+    // Start Screen
     if (state == 0) {
       if (cnt == 0) {
         clearDP14211();
@@ -357,7 +380,6 @@ int main(void) {
       }
       
       // Start game when user input detected
-
       if (!z) {
         state = 1;
 
@@ -394,6 +416,7 @@ int main(void) {
       }
     }
     
+    // Playing
     if (state == 1) {
       if (cnt == 0) {
         startCount(TIM15, TIMVAL);
@@ -434,27 +457,23 @@ int main(void) {
       }
     }
 
-    // draw win screen
+    // Win Screen
     if (state == 2) {
       if (cnt == 0) {
         clearDP14211();
         drawBoard(win1, empty);
         cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
 
-      drawBoard(win2, win1);
-      delay(100);
-      drawBoard(win3, win2);
-      delay(100);
-      drawBoard(win4, win3);
-      delay(100);
-      drawBoard(win5, win4);
-      delay(100);
-      drawBoard(win6, win5);
-      delay(100);
-      drawBoard(win1, win6);
-      delay(100);
-
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(win_ani, win_ani_init, frame);
+        if (frame >= 5) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME);
+      }
 
       if (!c) {
         state = 0;
@@ -462,31 +481,24 @@ int main(void) {
         playSong(userin);
       }
     }
-
-    // draw lose screen
+    
+    // Lose Screen
     if (state == 3) {
       if (cnt == 0) {
         clearDP14211();
         drawBoard(lose1, empty);
         cnt++;
+        frame = 0;
+        startCount(TIM15, STARTMSPERFRAME); // Start animation timer
       }
-  
-      drawBoard(lose2, lose1);
-      delay(100);
-      drawBoard(lose3, lose2);
-      delay(100);
-      drawBoard(lose4, lose3);
-      delay(100);
-      drawBoard(lose5, lose4);
-      delay(100);
-      drawBoard(lose6, lose5);
-      delay(100);
-      drawBoard(lose7, lose6);
-      delay(100);
-      drawBoard(lose8, lose7);
-      delay(100);
-      drawBoard(lose1, lose8);
-      delay(100);
+
+      // Loop animation
+      if (checkCount(TIM15)) {
+        drawFrame(lose_ani, lose_ani_init, frame);
+        if (frame >= 7) frame = 0;
+        else frame++;
+        startCount(TIM15, STARTMSPERFRAME);
+      }
 
       if (!c) {
         state = 0;
@@ -494,8 +506,8 @@ int main(void) {
         playSong(userin);
       }
     }
-
-    //TODO: draw record screen
+    
+    // New Record Screen
     if (state == 4) {
       if (cnt == 0) {
         clearDP14211();

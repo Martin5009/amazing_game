@@ -1,4 +1,8 @@
 `default_nettype wire
+/*
+displaydriver_top
+	Top level module with display driver and clock divider.
+*/
 module displaydriver_top (input	logic clk,
 						input	logic reset,
 						input	logic sck,
@@ -14,7 +18,8 @@ module displaydriver_top (input	logic clk,
 	logic [4:0] counter;
 	logic divclk;
 	
-	// Counter
+	// Incoming MCU clock is 16 MHz. Display runs at 256 kHz.
+	// Clock must be divided to avoid sending data to display faster than it can write.
 	always_ff @(posedge clk) begin
 		if (~reset) counter <= 0;
 		else	   counter <= counter + 2'b1;
@@ -26,7 +31,10 @@ module displaydriver_top (input	logic clk,
 	
 endmodule
 					 
-
+/*
+displaydriver
+	Top level module for display driver. Included SPI interface.
+*/
 module displaydriver (input	logic clk,
 					 input	logic reset,
 					 input	logic sck,
@@ -66,6 +74,11 @@ module displaydriver (input	logic clk,
 	
 endmodule
 
+/*
+hsosc
+	Module for the built-in hi-speed oscillator on the FPGA.
+ 	Unused, as MCU sends clock to FPGA.
+*/
 module hsosc (input		logic reset,
 			  output	logic clk);
 	

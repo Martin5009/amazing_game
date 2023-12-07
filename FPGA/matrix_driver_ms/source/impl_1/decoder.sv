@@ -1,3 +1,7 @@
+/*
+decoder
+	Module for translating MCU matrix commands into the format described in the DE-DP14112 datasheet.
+*/
 module decoder (input	logic [15:0] msg,
 			   input	logic [2:0] chpnum,
 			   output	logic [13:0] chpdata,
