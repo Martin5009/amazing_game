@@ -20,6 +20,23 @@ We purchased a knock off Wii Nunchuk and a breakoutboard from Adafruit. The boar
 ### 32x16 LED Dot Matrix 
 This LED matrix was found in the digital lab. It comes with microcontrollers on board that run on their own version of SPI. It is made up of eight segmented LED panels that lend themselves nicely to mulitplexing. In order to run the display properly, we had to apply SPI and multiplexing together in a creative way to satisfy its communication protocol. 
 
+## Laser Cutter Design
+Below shows the Laser Cutter Design for the wooden part of the cabinet. We used screws and wood glue to attache the pieces toegther.
+
+<div style="text-align: left">
+  <img src="../assets/img/lasercutter1.png" alt="logo" width="900" />
+</div>
+
+<div style="text-align: left">
+  <img src="../assets/img/lasercutter2.png" alt="logo" width="900" />
+</div>
+
+<div style="text-align: left">
+  <img src="../assets/img/lasercutter3.png" alt="logo" width="900" />
+</div>
+
+
+
 # Source Code Overview
 <!-- This section should include information to describe the organization of the code base and highlight how the code connects. -->
 The source code for the project is located in the Github repository [here](https://github.com/Martin5009/amazing_game).
