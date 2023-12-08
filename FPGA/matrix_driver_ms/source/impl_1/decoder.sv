@@ -20,47 +20,58 @@ module decoder (input	logic [15:0] msg,
 	assign rg = msg[14:11];
 	assign id = msg[15];
 	assign bm = {3'b110, 11'b0};
-	
+
 	always_comb
 		begin
-			if (x<=15) begin
-				if (y<=1) begin
-					chp2 = bm;
+			// Each LED driver chip controls 1/4 of the matrix.
+			// First, check which quadrant of the matrix the write request is in,
+			// then 
+			if (x<=15) begin	// check if in left half
+				if (y<=1) begin // check if in bottom half
+					// send dummy message to chips 2, 3, 4
+					chp2 = bm;	
 					chp3 = bm;
 					chp4 = bm;
-					
+
+					// send write request to chip 1
 					adrg = 7'h2 * (x) + (y);
 					adrr = adrg + 7'h20;
 					if (rg) chp1 = {3'b101, adrr, en};
 					else chp1 = {3'b101, adrg, en};
 				end
-				else begin
+				else begin // if not in bottom half, in top half
+					// send dummy message to chips 1, 2, 4
 					chp1 = bm;
 					chp2 = bm;
 					chp4 = bm;
-					
+
+					// send write request to chip 3
 					adrg = 7'h2 * (x) + (y - 2'd2);
 					adrr = adrg + 7'h20;
 					if (rg) chp3 = {3'b101, adrr, en};
 					else chp3 = {3'b101, adrg, en};
 				end
 			end
-			else begin
-				if (y<=1) begin
+			else begin	// if not in left half, in right half
+				if (y<=1) begin // check if in bottom half
+					// send dummy message to chips 1, 3, 4
 					chp1 = bm;
 					chp3 = bm;
 					chp4 = bm;
-					
+
+					// send write request to chip 2
 					adrg = 7'h2 * (x - 5'd16) + (y);
 					adrr = adrg + 7'h20;
 					if (rg) chp2 = {3'b101, adrr, en};
 					else chp2 = {3'b101, adrg, en};
 				end
-				else begin
+				else begin // if not in bottom half, in top half
+					// send dummy message to chips 1, 2, 3
 					chp1 = bm;
 					chp2 = bm;
 					chp3 = bm;
-					
+
+					// send write request to chip 4
 					adrg = 7'h2 * (x - 5'd16) + (y - 2'd2);
 					adrr = adrg + 7'h20;
 					if (rg) chp4 = {3'b101, adrr, en};
@@ -68,7 +79,9 @@ module decoder (input	logic [15:0] msg,
 				end
 			end
 		end
-	
+
+	// Check if instruction is a write or a command.
+	// If write, select data based on which chip is being written to.
 	always_comb
 		if (~id) begin
 			case (chpnum)
