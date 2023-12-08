@@ -63,19 +63,27 @@ Write messages consist of position bits X[4:0] and Y[1:0], green LED control bit
 As shown in Figure 5, the display is split into columns of four LEDs, where each LED in the column can be independently controlled. The write operation is used to control the LEDs in one of these columns, either by toggling them on/off, or by changing their color. The position bits X[4:0] and Y[1:0] define the (x, y) location of this column, defining (0, 0) to be at the top left of the display. The color bits R[3:0] and G[3:0] toggle the red and green LEDs respectively on each column. 
 
 X[4:0]: Control Location X
+
 These bits are used to define the x-coordinate location of the column to be controlled, defining x = 0 as the left edge of the display.
 
 Y[1:0]: Control Location Y
+
 These bits are used to define the y-coordinate location of the column to be controlled, defining y = 0 as the top edge of the display.
 
 G[3:0]: Green LED Enable
+
 These bits individually toggle the four green LEDs within each column.
+
 0: LED off
+
 1: LED on
 
 R[3:0]: Red LED Enable
+
 These bits individually toggle the four red LEDs within each column.
+
 0: LED off
+
 1: LED on
 
 Figure 5. The display is split into columns of four LEDs. The four LEDs in a column can be controlled with a single write operation on that column.
