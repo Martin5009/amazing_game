@@ -51,6 +51,7 @@ Communication between the MCU and FPGA occurs through 16-bit SPI transactions. T
 | :-----------: |:-------------:|
 | 0             | Write         |
 | 1             | Command       |
+
 Table 1. Instructions corresponding to the ID bit
 
 Write messages consist of position bits X[4:0] and Y[1:0], green LED control bits G[3:0], and red LED control bits R[3:0].
@@ -90,6 +91,7 @@ The command operation is used to control system-level functionalities of the dis
 | SYS EN        | 0000-0001-xxxxxxx | Turn on system oscillator          |
 | LED Off       | 0000-0010-xxxxxxx | Turn off LED duty cycle generator  |
 | LED On        | 0000-0011-xxxxxxx | Turn on LED duty cycle generator   |
+
 Table 2. Command codes for toggling various system-level functionalities.
 
 
