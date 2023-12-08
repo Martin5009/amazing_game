@@ -9,8 +9,8 @@ with the Wii Nunchuk and read its data
 
 #include "STM32L432KC.h"
 
-void initI2C(void) {
-  
+// This function initializes the I2C libaray
+void initI2C(void) {  
   // Configure and enable I2C Peripheral Clock in RCC
   RCC->CFGR |= _VAL2FLD(RCC_CFGR_PPRE1,0b101); // 8MHz
   RCC->CFGR |= _VAL2FLD(RCC_CFGR_HPRE,0b0000);
@@ -23,10 +23,6 @@ void initI2C(void) {
   // Set pins to standard Speed
   SYSCFG->CFGR1 &= ~SYSCFG_CFGR1_I2C1_FMP;
   SYSCFG->CFGR1 &= ~SYSCFG_CFGR1_I2C_PB6_FMP;
-
-  // Disable Analog Filter and Enable Digital Filter
-  //I2C1->CR1 |= I2C_CR1_ANFOFF;
-  //I2C1->CR1 |= _VAL2FLD(I2C_CR1_DNF,0b0000);
 
   //ANFOFF
   I2C1->CR1 |= I2C_CR1_ANFOFF;
@@ -69,10 +65,11 @@ void initI2C(void) {
   GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL7, 4);
 
   // Set output type to open-drain
-   GPIOA->OTYPER |= GPIO_OTYPER_OT9;
-   GPIOB->OTYPER |= GPIO_OTYPER_OT7;
+  GPIOA->OTYPER |= GPIO_OTYPER_OT9;
+  GPIOB->OTYPER |= GPIO_OTYPER_OT7;
 }
 
+// This function initilize the first register of the Nunchuck 
 void initNunchukFirst(void){
   while(I2C1->CR2 & I2C_CR2_START_Msk); // delay for nbytes setting
   
@@ -104,23 +101,20 @@ void initNunchukFirst(void){
   // Set START bit
   I2C1->CR2 |= I2C_CR2_START;
 
-  //char str[20] = "Bruh Moment";
-  //if (I2C_ISR_NACKF) printf("%s", str);
+  // put data in tx buffer
+  *(volatile char *) (&I2C1->TXDR) = data[0];
+
+  // wait for the data to be transmitted
+  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
 
   // put data in tx buffer
-   *(volatile char *) (&I2C1->TXDR) = data[0];
+  *(volatile char *) (&I2C1->TXDR) = data[1];
 
-   while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-
-   // put data in tx buffer
-   *(volatile char *) (&I2C1->TXDR) = data[1];
-
-  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-  
-  // I2C1->ICR |= I2C_ICR_STOPCF;
-  
+  // wait for the data to be transmitted
+  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));  
 }
 
+// This function initilize the second register of the Nunchuck
 void initNunchukSecond(void){
   while(I2C1->CR2 & I2C_CR2_START_Msk); // delay for nbytes setting
   
@@ -152,29 +146,26 @@ void initNunchukSecond(void){
   // Set START bit
   I2C1->CR2 |= I2C_CR2_START;
 
-  //char str[20] = "Bruh Moment";
-  //if (I2C_ISR_NACKF) printf("%s", str);
-
   // put data in tx buffer
   *(volatile char *) (&I2C1->TXDR) = data[0];
 
+  // wait for the data to be transmitted
   while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
 
-   // put data in tx buffer
+  // put data in tx buffer
   *(volatile char *) (&I2C1->TXDR) = data[1];
 
-  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-  
-  // I2C1->ICR |= I2C_ICR_STOPCF;
-  
+  // wait for the data to be transmitted
+  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));   
 }
 
+// This function initilize the Nunchuck as a whole, sending in 1 byte of 0 to prepare the Nunchuck for sending information
 void initNunchukThird(void){
   while(I2C1->CR2 & I2C_CR2_START_Msk); // delay for nbytes setting
   
   // Set number of bytes for transfer
   I2C1->CR2 &= ~(I2C_CR2_NBYTES);
-  I2C1->CR2 |= _VAL2FLD(I2C_CR2_NBYTES,0x01); // sending 2 initialization bytes
+  I2C1->CR2 |= _VAL2FLD(I2C_CR2_NBYTES,0x01);
 
   // Outline from p 1152
   char data[1] = {0xFA};
@@ -200,29 +191,20 @@ void initNunchukThird(void){
   // Set START bit
   I2C1->CR2 |= I2C_CR2_START;
 
-  //char str[20] = "Bruh Moment";
-  //if (I2C_ISR_NACKF) printf("%s", str);
-
   // put data in tx buffer
   *(volatile char *) (&I2C1->TXDR) = data[0];
 
-  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-
-   // put data in tx buffer
-  //*(volatile char *) (&I2C1->TXDR) = data[1];
-
-  //while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-  
-  // I2C1->ICR |= I2C_ICR_STOPCF;
-  
+  // wait for the data to be transmitted
+  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));  
 }
 
+// This function primes the Nunchuck so it is able to send out data with the read signal
 void initNunchukPrim(void){
   while(I2C1->CR2 & I2C_CR2_START_Msk); // delay for nbytes setting
   
   // Set number of bytes for transfer
   I2C1->CR2 &= ~(I2C_CR2_NBYTES);
-  I2C1->CR2 |= _VAL2FLD(I2C_CR2_NBYTES,0x01); // sending 2 initialization bytes
+  I2C1->CR2 |= _VAL2FLD(I2C_CR2_NBYTES,0x01);
 
   // Outline from p 1152
   char data[1] = {0x00};
@@ -254,18 +236,11 @@ void initNunchukPrim(void){
   // put data in tx buffer
   *(volatile char *) (&I2C1->TXDR) = data[0];
 
-  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-
-   // put data in tx buffer
-  //*(volatile char *) (&I2C1->TXDR) = data[1];
-
-  //while(!(I2C1->ISR & I2C_ISR_TXE_Msk));
-  
-  // I2C1->ICR |= I2C_ICR_STOPCF;
-  
+  // Wait for the datta to be transmitted
+  while(!(I2C1->ISR & I2C_ISR_TXE_Msk));  
 }
 
-
+// This function all the user to read 6 bytes of data from the Nunchuck
 char * readData(void){
   while(I2C1->CR2 & I2C_CR2_START_Msk); // delay for nbytes setting
 
@@ -302,32 +277,25 @@ char * readData(void){
   I2C1->CR2 |= I2C_CR2_START;
 
   // waiting for something to fill into the RXNE block
+  // Recieving 6 bytes of data from the Nunchuck into the variable data
   while(!(I2C1->ISR & I2C_ISR_RXNE));
-
   data[0] = (volatile char) I2C1->RXDR;
-  while(!(I2C1->ISR & I2C_ISR_RXNE));
-
-
+  
   while(!(I2C1->ISR & I2C_ISR_RXNE));
   data[1] = (volatile char) I2C1->RXDR;
 
-
   while(!(I2C1->ISR & I2C_ISR_RXNE));
   data[2] = (volatile char) I2C1->RXDR;
-
 
   while(!(I2C1->ISR & I2C_ISR_RXNE));
   data[3] = (volatile char) I2C1->RXDR;
 
   while(!(I2C1->ISR & I2C_ISR_RXNE));
-
   data[4] = (volatile char) I2C1->RXDR;
 
   while(!(I2C1->ISR & I2C_ISR_RXNE));
-
   data[5] = (volatile char) I2C1->RXDR;
 
   I2C1->ICR |= I2C_ICR_STOPCF;
-  
   return data;
 }
