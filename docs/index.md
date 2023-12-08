@@ -21,17 +21,14 @@ For this project, the team wanted something that can exist physically and show o
 </div>
 
 # Meet the Team!
-## Cecilia Li
+## [Cecilia Li](https://www.linkedin.com/in/cecilia-huijie-li-722222243/)
 An epic gamer that hit gold II
-[Linkedin](https://www.linkedin.com/in/cecilia-huijie-li-722222243/)
 
-## Lawrence Nelson
+## [Lawrence Nelson](https://www.linkedin.com/in/lawrence-nelson-62b111237/)
 A budding renewable energy engineer with an interest in almost every area of engineering and their applications to a happy society.
-[Linkedin](https://www.linkedin.com/in/lawrence-nelson-62b111237/)
 
-## Martin Susanto
+## [Martin Susanto](https://www.linkedin.com/in/martin-susanto-310721235/)
 Will not hesitate to be handsome and tall
-[Linkedin](https://www.linkedin.com/in/martin-susanto-310721235/)
 
 # Acknowledgements
 The team would like to thank Prof. Josh Brake, Prof. Tina Smilkstein, and the HMC Microprocessor class of FA23 for their help and support throughout our project development.
