@@ -73,7 +73,7 @@ These bits individually toggle the four green LEDs within each column.
 0: LED off  
 1: LED on  
 
-**R[3:0]: Red LED Enable**
+**R[3:0]: Red LED Enable**  
 These bits individually toggle the four red LEDs within each column.  
 0: LED off  
 1: LED on  
