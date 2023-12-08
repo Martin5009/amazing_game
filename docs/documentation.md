@@ -24,11 +24,11 @@ This LED matrix was found in the digital lab. It comes with microcontrollers on 
 Below shows the Laser Cutter Design for the wooden part of the cabinet. We used screws and wood glue to attache the pieces toegther.
 
 <div style="text-align: left">
-  <img src="../assets/img/lasercutter1.png" alt="logo" width="900" />
+  <img src="../assets/img/lasercutter1.png" alt="logo" width="400" />
 </div>
 
 <div style="text-align: left">
-  <img src="../assets/img/lasercutter2.png" alt="logo" width="900" />
+  <img src="../assets/img/lasercutter2.png" alt="logo" width="700" />
 </div>
 
 <div style="text-align: left">
