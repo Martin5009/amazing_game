@@ -45,14 +45,14 @@ Communication between the MCU and FPGA occurs through 16-bit SPI transactions. T
 
 <p align="center">
   ID0 - B14 B13 B12 B11 B10 B9 B8 B7 B6 B5 B4 B3 B2 B1 B0
-</p>
-
+  
 | ID            | Instruction   |
 | :-----------: |:-------------:|
 | 0             | Write         |
 | 1             | Command       |
 
 Table 1. Instructions corresponding to the ID bit
+</p>
 
 Write messages consist of position bits X[4:0] and Y[1:0], green LED control bits G[3:0], and red LED control bits R[3:0].
 
@@ -83,7 +83,6 @@ Figure 5. The display is split into columns of four LEDs. The four LEDs in a col
 The command operation is used to control system-level functionalities of the display. The command code bits CC[14:0] define the target functionality. Table 1 lists relevant command codes. Other command codes are listed in the HT1632C datasheet.
 <p align="center">
 1 - CC14 CC13 CC12 CC11 CC10 CC9 CC8 CC7 CC6 CC5 CC4 CC3 CC2 CC1 CC0
-</p>
 
 | Name          | CC[14:0]          | Function                           |
 | :-----------: |:-----------------:| :---------------------------------:|
@@ -93,5 +92,5 @@ The command operation is used to control system-level functionalities of the dis
 | LED On        | 0000-0011-xxxxxxx | Turn on LED duty cycle generator   |
 
 Table 2. Command codes for toggling various system-level functionalities.
-
+</p>
 
