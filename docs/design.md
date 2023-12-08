@@ -81,9 +81,7 @@ These bits individually toggle the four green LEDs within each column.
 R[3:0]: Red LED Enable
 
 These bits individually toggle the four red LEDs within each column.
-
 0: LED off
-
 1: LED on
 
 Figure 5. The display is split into columns of four LEDs. The four LEDs in a column can be controlled with a single write operation on that column.
