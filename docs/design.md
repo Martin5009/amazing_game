@@ -16,19 +16,26 @@ Fig 1. System-level block diagram, including the Wii Nunchuk, MCU, FPGA, LED Mat
   Once the Nunchuck message is received, it is parsed to pull out the x and y positions of the joystick and the states of the two buttons on the controller. Once these inputs are decoded, the MCU translates them into player movements and/or menu interactions and updates the game state as well as the screen that will be displayed on the LED Matrix. The display data is sent to the FPGA over SPI according to the communication standard defined in the FGPA design section. The MCU then waits for the DONE signal from the FPGA, signaling that the FPGA is done shifting data into the display and that the MCU can send over the next message.
 
 # FPGA Design
+  The LED matrix uses its own custom SPI-like communication protocol, shown in Figure 2. The matrix has four pins: CLK, CS, WR, and DATA. The DATA and WR pins act like the SDI and SCL pins from SPI, where data is written serially over DATA on the rising edge of WR to the matrix's internal memory. The CLK and CS pins require a bit more explanation. The matrix contains four HT1632C LED driver chips, each of which controls a fourth of the display. Displaying an image on the matrix involves writing the proper bits to each of the four chips, and the CLK and CS pins allows one to select which chip to write to. CLK and CS are wired to the CP and DSA pins of a 74HC164 shift register, and the chip select pins of the four HT1632C chips are wired to the Q0, Q1, Q2, and Q3 pins. 
+
+<div style="text-align: left">
+  <img src="../assets/img/DE-DP14112_timing.png" alt="logo1" width="900" />
+</div>
+
+Fig 2. Timing diagram for the DE-DP14112 LED matrix. 
+  
+  The purpose of the FPGA is to receive a message over SPI from the MCU written using the communication standard defined earlier in this report, and to translate that SPI message into one following this custom protocol, which includes the proper bits, timing, and chip multiplexing. The digital circuit design, shown in Figure 4, follows the architecture of a processor, with a single controller managing the rest of the subcircuits through control signals. The state transition diagram for the controller is shown in Figure 3. 
 
 <div style="text-align: left">
   <img src="../assets/schematics/FPGA_controller_FSM.jpeg" alt="logo1" width="900" />
 </div>
 
-Fig 2. Finite state machine controller for the FPGA DE-DP14112 driver.
-
-
+Fig 3. Finite state machine controller for the FPGA DE-DP14112 driver.
 
 ## FPGA Block Diagram
 <div style="text-align: left">
   <img src="../assets/schematics/FPGA_block_diagram.jpeg" alt="logo1" width="900" />
 </div>
 
-Fig 3. Block diagram for the FPGA DE-DP14112 driver.
+Fig 4. Block diagram for the FPGA DE-DP14112 driver.
 
