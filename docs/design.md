@@ -39,3 +39,57 @@ Fig 3. Finite state machine controller for the FPGA DE-DP14112 driver.
 
 Fig 4. Block diagram for the FPGA DE-DP14112 driver.
 
+# MCU-to-FPGA Communication Standard
+
+Communication between the MCU and FPGA occurs through 16-bit SPI transactions. The ID bit contains the operation type. The purpose of the remaining bits varies depending on whether the operation is a write or a command.
+
+<p align="center">
+  ID0 - B14 B13 B12 B11 B10 B9 B8 B7 B6 B5 B4 B3 B2 B1 B0
+</p>
+
+| ID            | Instruction   |
+| :-----------: |:-------------:|
+| 0             | Write         |
+| 1             | Command       |
+Table 1. Instructions corresponding to the ID bit
+
+Write messages consist of position bits X[4:0] and Y[1:0], green LED control bits G[3:0], and red LED control bits R[3:0].
+
+<p align="center">
+0 - R3 R2 R1 R0 - G3 G2 G1 G0 - Y1 Y0 - X4 X3 X2 X1 X0
+</p>
+
+As shown in Figure 5, the display is split into columns of four LEDs, where each LED in the column can be independently controlled. The write operation is used to control the LEDs in one of these columns, either by toggling them on/off, or by changing their color. The position bits X[4:0] and Y[1:0] define the (x, y) location of this column, defining (0, 0) to be at the top left of the display. The color bits R[3:0] and G[3:0] toggle the red and green LEDs respectively on each column. 
+
+X[4:0]: Control Location X
+These bits are used to define the x-coordinate location of the column to be controlled, defining x = 0 as the left edge of the display.
+
+Y[1:0]: Control Location Y
+These bits are used to define the y-coordinate location of the column to be controlled, defining y = 0 as the top edge of the display.
+
+G[3:0]: Green LED Enable
+These bits individually toggle the four green LEDs within each column.
+0: LED off
+1: LED on
+
+R[3:0]: Red LED Enable
+These bits individually toggle the four red LEDs within each column.
+0: LED off
+1: LED on
+
+Figure 5. The display is split into columns of four LEDs. The four LEDs in a column can be controlled with a single write operation on that column.
+
+The command operation is used to control system-level functionalities of the display. The command code bits CC[14:0] define the target functionality. Table 1 lists relevant command codes. Other command codes are listed in the HT1632C datasheet.
+<p align="center">
+1 - CC14 CC13 CC12 CC11 CC10 CC9 CC8 CC7 CC6 CC5 CC4 CC3 CC2 CC1 CC0
+</p>
+
+| Name          | CC[14:0]          | Function                           |
+| :-----------: |:-----------------:| :---------------------------------:|
+| SYS DIS       | 0000-0000-xxxxxxx | Turn off system oscillator         |
+| SYS EN        | 0000-0001-xxxxxxx | Turn on system oscillator          |
+| LED Off       | 0000-0010-xxxxxxx | Turn off LED duty cycle generator  |
+| LED On        | 0000-0011-xxxxxxx | Turn on LED duty cycle generator   |
+Table 2. Command codes for toggling various system-level functionalities.
+
+
